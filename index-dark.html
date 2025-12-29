@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aayush Jangir - Unreal Engine Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background: #0a0a0a;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: linear-gradient(45deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Floating particles */
+        .particle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: rgba(102, 126, 234, 0.3);
+            border-radius: 50%;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+            animation: slideInRight 1s ease-out 0.2s backwards;
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            margin-top: 1.5rem;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            animation: bounceIn 1s ease-out 0.4s backwards;
+        }
+
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { transform: scale(1.05); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 1.5rem;
+        }
+
+        nav ul li a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        nav ul li a:hover {
+            color: #667eea;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Section Styling */
+        section {
+            background: rgba(26, 26, 46, 0.6);
+            backdrop-filter: blur(10px);
+            margin: 2rem 0;
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section:nth-child(1) { animation-delay: 0.1s; }
+        section:nth-child(2) { animation-delay: 0.2s; }
+        section:nth-child(3) { animation-delay: 0.3s; }
+        section:nth-child(4) { animation-delay: 0.4s; }
+        section:nth-child(5) { animation-delay: 0.5s; }
+
+        section h2 {
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid transparent;
+            border-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-image-slice: 1;
+            padding-bottom: 0.7rem;
+            font-size: 2rem;
+        }
+
+        /* About Section */
+        .about-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #b0b0b0;
+        }
+
+        .about-content p {
+            margin-bottom: 1rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .about-content strong {
+            color: #667eea;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .skill-category {
+            background: rgba(18, 18, 35, 0.6);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s;
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            border-left-color: #764ba2;
+        }
+
+        .skill-category h3 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .skill-category ul li {
+            padding: 0.5rem 0;
+            color: #b0b0b0;
+            transition: all 0.3s;
+        }
+
+        .skill-category ul li:hover {
+            color: #667eea;
+            transform: translateX(5px);
+        }
+
+        .skill-category ul li:before {
+            content: "▹ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .project-card {
+            background: rgba(18, 18, 35, 0.6);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+            border-color: #667eea;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-meta {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: #b0b0b0;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tag {
+            background: rgba(102, 126, 234, 0.2);
+            color: #667eea;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            transition: all 0.3s;
+        }
+
+        .tech-tag:hover {
+            background: rgba(102, 126, 234, 0.3);
+            transform: scale(1.05);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-block;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(44, 62, 80, 0.8);
+            color: white;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(44, 62, 80, 1);
+            border-color: #667eea;
+        }
+
+        .btn-disabled {
+            background: rgba(100, 100, 100, 0.3);
+            color: #666;
+            cursor: not-allowed;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin-top: 2rem;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+            animation: fadeInLeft 0.6s ease-out;
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid #0a0a0a;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.6);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.6); }
+            50% { box-shadow: 0 0 30px rgba(102, 126, 234, 1); }
+        }
+
+        .timeline-content {
+            background: rgba(18, 18, 35, 0.6);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            transition: all 0.3s;
+        }
+
+        .timeline-content:hover {
+            transform: translateX(5px);
+            border-color: #667eea;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .timeline-content h3 {
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content .date {
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .timeline-content ul {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+            color: #b0b0b0;
+        }
+
+        /* Contact Section */
+        .contact-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .contact-link {
+            text-decoration: none;
+            color: #e0e0e0;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            transition: all 0.3s;
+            padding: 1.2rem 1.5rem;
+            background: rgba(18, 18, 35, 0.6);
+            border-radius: 10px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .contact-link:hover::before {
+            left: 100%;
+        }
+
+        .contact-link:hover {
+            color: #667eea;
+            border-color: #667eea;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(18, 18, 35, 0.95);
+            color: #b0b0b0;
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            z-index: 1000;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Loading animation */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation"></div>
+    
+    <!-- Floating particles -->
+    <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
+    <div class="particle" style="left: 30%; animation-delay: 4s;"></div>
+    <div class="particle" style="left: 40%; animation-delay: 1s;"></div>
+    <div class="particle" style="left: 50%; animation-delay: 3s;"></div>
+    <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
+    <div class="particle" style="left: 70%; animation-delay: 2.5s;"></div>
+    <div class="particle" style="left: 80%; animation-delay: 4.5s;"></div>
+    <div class="particle" style="left: 90%; animation-delay: 1.5s;"></div>
+
+    <header>
+        <h1>Aayush Jangir</h1>
+        <p>Aspiring Unreal Engine Developer</p>
+        <div class="status-badge">📚 Phase 1, Week 1 - Active Learning</div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#journey">Learning Journey</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- About Section -->
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <p>
+                    Hello! I'm <strong>Aayush Jangir</strong>, an aspiring Unreal Engine developer following a structured 
+                    36-month roadmap to become a professional game developer. Currently in <strong>Phase 1 (Foundation)</strong>, 
+                    I'm focusing on mastering Blueprint visual scripting and building complete, shippable games from scratch.
+                </p>
+                <p>
+                    I believe in learning by doing - shipping actual games, not just consuming tutorials. 
+                    Every project you see here represents real learning, real challenges overcome, and real progress 
+                    toward my goal of becoming a senior Unreal Engine developer.
+                </p>
+                <p>
+                    <strong>Current Focus:</strong> Blueprint fundamentals, player movement systems, game architecture, 
+                    collision detection, and UI implementation. Building 3-5 complete games during Phase 1 to establish 
+                    a strong foundation before moving to C++ in Phase 2.
+                </p>
+                <p>
+                    <strong>Philosophy:</strong> Finished games > Perfect games. Consistent progress > Sporadic bursts. 
+                    Public learning > Tutorial hell.
+                </p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>🎮 Game Engines</h3>
+                    <ul>
+                        <li>Unreal Engine 5.7.1</li>
+                        <li>Blueprint Visual Scripting</li>
+                        <li>Unity (Previous experience)</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>💻 Programming</h3>
+                    <ul>
+                        <li>Blueprint Development</li>
+                        <li>Event-Driven Architecture</li>
+                        <li>Game Logic Design</li>
+                        <li>C++ (Phase 2 - Upcoming)</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>🕹️ Game Development</h3>
+                    <ul>
+                        <li>Character Movement Systems</li>
+                        <li>Collision Detection</li>
+                        <li>UI/UX (UMG Widgets)</li>
+                        <li>Actor Communication</li>
+                        <li>Game Architecture</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>🛠️ Tools & Workflow</h3>
+                    <ul>
+                        <li>Git Version Control</li>
+                        <li>GitHub</li>
+                        <li>Documentation</li>
+                        <li>Project Organization</li>
+                        <li>Agile Development</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1 - Coin Collector -->
+                <div class="project-card">
+                    <div class="project-image">
+                        🪙 Coin Collector
+                    </div>
+                    <div class="project-content">
+                        <h3>Coin Collector</h3>
+                        <div class="project-meta">Week 1 Project • December 2025</div>
+                        <p class="project-description">
+                            A 3D coin collection game where players navigate an environment to collect all coins. 
+                            Built entirely with Blueprints to learn fundamental game development concepts and player interaction systems.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Blueprints</span>
+                            <span class="tech-tag">UE 5.7.1</span>
+                            <span class="tech-tag">3D Movement</span>
+                            <span class="tech-tag">Collision</span>
+                            <span class="tech-tag">UI</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://detrear.itch.io/coin-collector" class="btn btn-primary" target="_blank">
+                                🎮 View on itch.io
+                            </a>
+                            <span class="btn btn-disabled">💻 Code Coming Soon</span>
+                        </div>
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(102, 126, 234, 0.2); font-size: 0.9rem; color: #888;">
+                            <strong style="color: #667eea;">What I Learned:</strong>
+                            <ul style="margin-top: 0.5rem; padding-left: 1.5rem; color: #b0b0b0;">
+                                <li>Blueprint event system (BeginPlay, Tick, Custom Events)</li>
+                                <li>Character Movement Component setup</li>
+                                <li>Overlap events for collision detection</li>
+                                <li>UMG Widget creation for score tracking</li>
+                                <li>Actor spawning and placement</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Placeholder for future Week 4 project -->
+                <div class="project-card" style="opacity: 0.7; border: 2px dashed rgba(102, 126, 234, 0.3);">
+                    <div class="project-image">
+                        🐦 Next Project
+                    </div>
+                    <div class="project-content">
+                        <h3>Flappy Bird Clone</h3>
+                        <div class="project-meta">Week 4 Project • Coming January 2026</div>
+                        <p class="project-description">
+                            Complete game with score system, death mechanics, game restart functionality, and UI integration. 
+                            Will demonstrate full game loop implementation and polish.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Planned</span>
+                            <span class="tech-tag">Game Loop</span>
+                            <span class="tech-tag">UI Systems</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Placeholder for Phase 1 Capstone -->
+                <div class="project-card" style="opacity: 0.7; border: 2px dashed rgba(102, 126, 234, 0.3);">
+                    <div class="project-image">
+                        🎯 Phase 1 Capstone
+                    </div>
+                    <div class="project-content">
+                        <h3>Phase 1 Capstone Game</h3>
+                        <div class="project-meta">Week 12 Project • Coming February 2026</div>
+                        <p class="project-description">
+                            A polished, complete game showcasing all Phase 1 skills: player mechanics, 
+                            game architecture, UI systems, and professional workflows. Portfolio-worthy project.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Future</span>
+                            <span class="tech-tag">Capstone</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learning Journey Section -->
+        <section id="journey">
+            <h2>My Learning Journey</h2>
+            <p style="margin-bottom: 1.5rem; color: #b0b0b0; font-size: 1.05rem;">
+                Following a structured <strong style="color: #667eea;">36-month roadmap</strong> from complete beginner to senior Unreal Engine developer. 
+                This journey is about consistent progress, shipping real games, and building professional skills one week at a time.
+            </p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Phase 1: Foundation</h3>
+                        <span class="date">December 2025 - February 2026 (In Progress) 🔥</span>
+                        <p style="margin-top: 0.5rem; color: #b0b0b0;">
+                            <strong style="color: #fff;">Focus:</strong> Blueprint fundamentals, core game systems, shipping 3-5 complete games
+                        </p>
+                        <p style="margin-top: 0.5rem; color: #b0b0b0;"><strong style="color: #4caf50;">✅ Completed:</strong></p>
+                        <ul style="color: #b0b0b0;">
+                            <li>Week 1: Blueprint Basics & First Game (Coin Collector)</li>
+                            <li>Git & GitHub version control setup</li>
+                            <li>Professional portfolio website creation</li>
+                            <li>itch.io publishing workflow</li>
+                        </ul>
+                        <p style="margin-top: 0.5rem; color: #b0b0b0;"><strong style="color: #667eea;">🎯 Current:</strong> Week 2 - Actor lifecycle and event systems</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Phase 2: Intermediate Development</h3>
+                        <span class="date">March 2026 - July 2026 (Upcoming)</span>
+                        <p style="margin-top: 0.5rem; color: #b0b0b0;">
+                            <strong style="color: #fff;">Focus:</strong> C++ introduction, complex systems (inventory, AI, save/load), 
+                            professional workflows, animation systems, and performance optimization
+                        </p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Phase 3+: Advanced Specialization</h3>
+                        <span class="date">August 2026 onwards (Planned)</span>
+                        <p style="margin-top: 0.5rem; color: #b0b0b0;">
+                            <strong style="color: #fff;">Focus:</strong> Multiplayer networking, Gameplay Ability System (GAS), 
+                            advanced AI with behavior trees, graphics programming, and engine architecture
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Get In Touch</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: #b0b0b0; font-size: 1.05rem;">
+                I'm actively learning and building. Feel free to reach out if you'd like to discuss 
+                game development, provide feedback on my projects, collaborate, or just connect!
+            </p>
+            <div class="contact-links">
+                <a href="mailto:detrearyaeger@gmail.com" class="contact-link">
+                    <span style="font-size: 1.5rem;">📧</span> Email
+                </a>
+                <a href="https://github.com/Aayush-jangir" class="contact-link" target="_blank">
+                    <span style="font-size: 1.5rem;">💻</span> GitHub
+                </a>
+                <a href="https://detrear.itch.io" class="contact-link" target="_blank">
+                    <span style="font-size: 1.5rem;">🎮</span> itch.io
+                </a>
+                <a href="https://www.linkedin.com/in/aayush-jangir-20b62a202/" class="contact-link" target="_blank">
+                    <span style="font-size: 1.5rem;">💼</span> LinkedIn
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scroll to top button -->
+    <div class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        ↑
+    </div>
+
+    <footer>
+        <p style="color: #fff; font-size: 1.1rem;">&copy; 2025 Aayush Jangir. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;">
+            Built with passion for game development | Phase 1, Week 1 of 144 weeks
+        </p>
+        <p style="margin-top: 0.5rem; opacity: 0.7; font-size: 0.9rem;">
+            Last Updated: December 2025
+        </p>
+    </footer>
+
+    <script>
+        // Scroll to top button visibility
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.querySelector('.scroll-top');
+            if (window.pageYOffset > 300) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+</html>
