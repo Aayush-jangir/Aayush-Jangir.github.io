@@ -1,963 +1,650 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aayush Jangir - Unreal Engine Developer</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #e0e0e0;
-            background: #0a0a0a;
-            overflow-x: hidden;
-        }
-
-        /* Animated Background */
-        .bg-animation {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            background: linear-gradient(45deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-            animation: gradientShift 15s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        /* Floating particles */
-        .particle {
-            position: fixed;
-            width: 4px;
-            height: 4px;
-            background: rgba(102, 126, 234, 0.3);
-            border-radius: 50%;
-            animation: float 20s infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            animation: fadeIn 1s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
-            animation: pulse 8s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-        }
-
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-            z-index: 1;
-            animation: slideInLeft 1s ease-out;
-        }
-
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        header p {
-            font-size: 1.3rem;
-            opacity: 0.9;
-            position: relative;
-            z-index: 1;
-            animation: slideInRight 1s ease-out 0.2s backwards;
-        }
-
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .status-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 0.7rem 1.5rem;
-            border-radius: 30px;
-            margin-top: 1.5rem;
-            font-weight: 500;
-            position: relative;
-            z-index: 1;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-            animation: bounceIn 1s ease-out 0.4s backwards;
-        }
-
-        @keyframes bounceIn {
-            0% { opacity: 0; transform: scale(0.3); }
-            50% { transform: scale(1.05); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-
-        /* Navigation */
-        nav {
-            background: rgba(26, 26, 46, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
-            animation: slideDown 0.5s ease-out;
-        }
-
-        @keyframes slideDown {
-            from { transform: translateY(-100%); }
-            to { transform: translateY(0); }
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        nav ul li {
-            margin: 0 1.5rem;
-        }
-
-        nav ul li a {
-            color: #e0e0e0;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-            position: relative;
-            padding: 0.5rem 0;
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            transition: width 0.3s;
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        nav ul li a:hover {
-            color: #667eea;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        /* Section Styling */
-        section {
-            background: rgba(26, 26, 46, 0.6);
-            backdrop-filter: blur(10px);
-            margin: 2rem 0;
-            padding: 2.5rem;
-            border-radius: 15px;
-            border: 1px solid rgba(102, 126, 234, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        section:nth-child(1) { animation-delay: 0.1s; }
-        section:nth-child(2) { animation-delay: 0.2s; }
-        section:nth-child(3) { animation-delay: 0.3s; }
-        section:nth-child(4) { animation-delay: 0.4s; }
-        section:nth-child(5) { animation-delay: 0.5s; }
-
-        section h2 {
-            color: #ffffff;
-            margin-bottom: 1.5rem;
-            border-bottom: 3px solid transparent;
-            border-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-image-slice: 1;
-            padding-bottom: 0.7rem;
-            font-size: 2rem;
-        }
-
-        /* About Section */
-        .about-content {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #b0b0b0;
-        }
-
-        .about-content p {
-            margin-bottom: 1rem;
-            animation: fadeIn 1s ease-out;
-        }
-
-        .about-content strong {
-            color: #667eea;
-        }
-
-        /* Skills Grid */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .skill-category {
-            background: rgba(18, 18, 35, 0.6);
-            padding: 1.5rem;
-            border-radius: 10px;
-            border-left: 4px solid #667eea;
-            transition: all 0.3s;
-            animation: scaleIn 0.5s ease-out;
-        }
-
-        @keyframes scaleIn {
-            from { transform: scale(0.9); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        .skill-category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-            border-left-color: #764ba2;
-        }
-
-        .skill-category h3 {
-            color: #ffffff;
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .skill-category ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .skill-category ul li {
-            padding: 0.5rem 0;
-            color: #b0b0b0;
-            transition: all 0.3s;
-        }
-
-        .skill-category ul li:hover {
-            color: #667eea;
-            transform: translateX(5px);
-        }
-
-        .skill-category ul li:before {
-            content: "▹ ";
-            color: #667eea;
-            font-weight: bold;
-            margin-right: 0.5rem;
-        }
-
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 1.5rem;
-        }
-
-        .project-card {
-            background: rgba(18, 18, 35, 0.6);
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: all 0.4s;
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
-            border-color: #667eea;
-        }
-
-        .project-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.8rem;
-            font-weight: bold;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-image::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .project-content {
-            padding: 1.5rem;
-        }
-
-        .project-content h3 {
-            color: #ffffff;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-meta {
-            color: #888;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .project-description {
-            color: #b0b0b0;
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .tech-tag {
-            background: rgba(102, 126, 234, 0.2);
-            color: #667eea;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            transition: all 0.3s;
-        }
-
-        .tech-tag:hover {
-            background: rgba(102, 126, 234, 0.3);
-            transform: scale(1.05);
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .btn {
-            padding: 0.7rem 1.5rem;
-            border: none;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-            display: inline-block;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .btn:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-        }
-
-        .btn-secondary {
-            background: rgba(44, 62, 80, 0.8);
-            color: white;
-            border: 1px solid rgba(102, 126, 234, 0.3);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(44, 62, 80, 1);
-            border-color: #667eea;
-        }
-
-        .btn-disabled {
-            background: rgba(100, 100, 100, 0.3);
-            color: #666;
-            cursor: not-allowed;
-        }
-
-        /* Timeline */
-        .timeline {
-            position: relative;
-            padding-left: 2rem;
-            margin-top: 2rem;
-        }
-
-        .timeline:before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-bottom: 2rem;
-            animation: fadeInLeft 0.6s ease-out;
-        }
-
-        @keyframes fadeInLeft {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .timeline-item:before {
-            content: '';
-            position: absolute;
-            left: -2.5rem;
-            top: 0;
-            width: 15px;
-            height: 15px;
-            background: #667eea;
-            border-radius: 50%;
-            border: 3px solid #0a0a0a;
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.6);
-            animation: pulse-dot 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse-dot {
-            0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.6); }
-            50% { box-shadow: 0 0 30px rgba(102, 126, 234, 1); }
-        }
-
-        .timeline-content {
-            background: rgba(18, 18, 35, 0.6);
-            padding: 1.5rem;
-            border-radius: 10px;
-            border: 1px solid rgba(102, 126, 234, 0.2);
-            transition: all 0.3s;
-        }
-
-        .timeline-content:hover {
-            transform: translateX(5px);
-            border-color: #667eea;
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
-        }
-
-        .timeline-content h3 {
-            color: #ffffff;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-content .date {
-            color: #667eea;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        .timeline-content ul {
-            margin-left: 1.5rem;
-            margin-top: 0.5rem;
-            color: #b0b0b0;
-        }
-
-        /* Contact Section */
-        .contact-links {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-
-        .contact-link {
-            text-decoration: none;
-            color: #e0e0e0;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-            transition: all 0.3s;
-            padding: 1.2rem 1.5rem;
-            background: rgba(18, 18, 35, 0.6);
-            border-radius: 10px;
-            border: 1px solid rgba(102, 126, 234, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .contact-link:hover::before {
-            left: 100%;
-        }
-
-        .contact-link:hover {
-            color: #667eea;
-            border-color: #667eea;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-        }
-
-        /* Footer */
-        footer {
-            background: rgba(18, 18, 35, 0.95);
-            color: #b0b0b0;
-            text-align: center;
-            padding: 2.5rem;
-            margin-top: 3rem;
-            border-top: 1px solid rgba(102, 126, 234, 0.2);
-        }
-
-        footer p {
-            margin: 0.5rem 0;
-        }
-
-        /* Scroll to top button */
-        .scroll-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-            z-index: 1000;
-        }
-
-        .scroll-top.visible {
-            opacity: 1;
-        }
-
-        .scroll-top:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            nav ul li {
-                margin: 0.5rem 0;
-            }
-
-            header h1 {
-                font-size: 2rem;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            section {
-                padding: 1.5rem;
-            }
-        }
-
-        /* Loading animation */
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detrear Yaeger — Game Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#0a0b0f;--bg2:#0f1117;
+  --surface:#161820;--surface2:#1c1f2a;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --text:#e8e9ef;--muted:#7a7f96;
+  --accent:#c8a96e;--accent2:#e8c98a;
+  --green:#4ade80;--unity-c:#c8c8c8;--ue-c:#0085ca;
+  --font-d:'Bebas Neue',sans-serif;
+  --font-b:'DM Sans',sans-serif;
+  --font-m:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-b);font-size:16px;line-height:1.6;overflow-x:hidden;}
+
+#bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 3rem;display:flex;justify-content:space-between;align-items:center;background:rgba(10,11,15,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:var(--font-d);font-size:1.5rem;letter-spacing:0.08em;color:var(--accent);text-decoration:none;}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{font-family:var(--font-m);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--text);}
+
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 3rem;position:relative;overflow:hidden;}
+.hero-content{position:relative;z-index:1;max-width:900px;}
+.hero-label{font-family:var(--font-m);font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;display:flex;align-items:center;gap:0.75rem;}
+.hero-label::before{content:'';display:block;width:32px;height:1px;background:var(--accent);}
+.hero-name{font-family:var(--font-d);font-size:clamp(4rem,10vw,8.5rem);line-height:0.92;letter-spacing:0.02em;color:var(--text);margin-bottom:1.5rem;}
+.hero-name span{color:var(--accent);}
+.hero-tagline{font-size:1.1rem;font-weight:300;color:var(--muted);max-width:500px;margin-bottom:2.5rem;}
+.hero-tags{display:flex;flex-wrap:wrap;gap:0.6rem;margin-bottom:3rem;}
+.tag{font-family:var(--font-m);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.35rem 0.9rem;border:1px solid var(--border2);border-radius:2px;color:var(--muted);background:rgba(22,24,32,0.75);backdrop-filter:blur(6px);transition:all 0.2s;}
+.tag:hover{border-color:var(--accent);color:var(--accent);}
+.tag.unity{border-color:rgba(200,200,200,0.25);color:var(--unity-c);}
+.tag.ue{border-color:rgba(0,133,202,0.35);color:var(--ue-c);}
+.tag.open{border-color:rgba(74,222,128,0.4);color:var(--green);background:rgba(74,222,128,0.06);}
+.tag.open::before{content:'●';margin-right:0.4rem;animation:blink 1.5s infinite;font-size:0.5rem;vertical-align:middle;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+.hero-cta{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;}
+.btn-primary{font-family:var(--font-m);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.85rem 2rem;background:var(--accent);color:#0a0b0f;border:none;cursor:pointer;text-decoration:none;display:inline-block;font-weight:500;transition:all 0.2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-2px);}
+.btn-secondary{font-family:var(--font-m);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.85rem 2rem;background:transparent;color:var(--muted);border:1px solid var(--border2);cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.2s;}
+.btn-secondary:hover{color:var(--text);border-color:rgba(255,255,255,0.3);}
+.hero-scroll{position:absolute;bottom:2.5rem;left:3rem;display:flex;align-items:center;gap:0.75rem;z-index:1;}
+.scroll-line{width:40px;height:1px;background:var(--border2);position:relative;overflow:hidden;}
+.scroll-line::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--accent);animation:sld 2s infinite;}
+@keyframes sld{0%{left:-100%}100%{left:100%}}
+.scroll-text{font-family:var(--font-m);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);}
+.cursor-blink{display:inline-block;width:4px;height:0.85em;background:var(--accent);vertical-align:middle;animation:blink 1.2s infinite;margin-left:4px;}
+
+section{padding:6rem 3rem;position:relative;z-index:1;}
+.section-header{display:flex;align-items:center;gap:1.5rem;margin-bottom:4rem;}
+.section-num{font-family:var(--font-m);font-size:0.65rem;color:var(--accent);letter-spacing:0.1em;}
+.section-title{font-family:var(--font-d);font-size:clamp(2rem,5vw,3.5rem);letter-spacing:0.04em;color:var(--text);}
+.section-line{flex:1;height:1px;background:var(--border);max-width:300px;}
+
+#about{background:rgba(15,17,23,0.93);backdrop-filter:blur(2px);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+.about-text p{color:var(--muted);font-size:1.05rem;line-height:1.8;margin-bottom:1.5rem;}
+.about-text strong{color:var(--text);font-weight:400;}
+.highlight{color:var(--accent);}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+.stat-card{background:var(--surface);border:1px solid var(--border);padding:1.5rem;position:relative;transition:border-color 0.2s;}
+.stat-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--accent);opacity:0;transition:opacity 0.2s;}
+.stat-card:hover{border-color:var(--border2);}
+.stat-card:hover::before{opacity:1;}
+.stat-num{font-family:var(--font-d);font-size:2.5rem;color:var(--accent);line-height:1;margin-bottom:0.3rem;}
+.stat-label{font-family:var(--font-m);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
+
+#skills{background:rgba(10,11,15,0.9);}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.skill-group{background:var(--surface);border:1px solid var(--border);padding:2rem;transition:border-color 0.3s,transform 0.3s;}
+.skill-group:hover{border-color:var(--border2);transform:translateY(-3px);}
+.skill-group-icon{font-size:1.5rem;margin-bottom:1rem;}
+.skill-group-title{font-family:var(--font-m);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;}
+.skill-item{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.9rem;}
+.skill-name{font-size:0.9rem;color:var(--text);font-weight:300;}
+.skill-bar-wrap{width:100px;height:2px;background:var(--border);position:relative;overflow:hidden;}
+.skill-bar{position:absolute;top:0;left:0;height:100%;background:var(--accent);width:0;transition:width 1.2s cubic-bezier(0.16,1,0.3,1);}
+
+#projects{background:rgba(15,17,23,0.93);}
+.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;}
+.project-card{background:var(--surface);border:1px solid var(--border);overflow:hidden;cursor:pointer;transition:border-color 0.3s,transform 0.3s;position:relative;}
+.project-card:hover{border-color:rgba(200,169,110,0.45);transform:translateY(-4px);}
+.project-card.featured{grid-column:1 / -1;display:grid;grid-template-columns:1.15fr 1fr;}
+
+.project-img{overflow:hidden;position:relative;background:var(--surface2);}
+.project-card:not(.featured) .project-img{aspect-ratio:16/9;}
+.project-card.featured .project-img{min-height:380px;}
+
+/* 3-panel screenshot mosaic */
+.ss-mosaic{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;height:100%;gap:3px;background:#050609;}
+.ss-mosaic img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease;}
+.ss-mosaic .ss-main{grid-row:1 / 3;object-position:center top;}
+.project-card:hover .ss-mosaic img{transform:scale(1.05);}
+.ss-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,11,15,0.55) 0%,transparent 55%);pointer-events:none;}
+
+.project-info{padding:1.75rem;}
+.project-card.featured .project-info{display:flex;flex-direction:column;justify-content:center;padding:2.5rem;}
+.project-engine{display:flex;gap:0.5rem;margin-bottom:1rem;flex-wrap:wrap;}
+.engine-badge{font-family:var(--font-m);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.25rem 0.65rem;border-radius:2px;}
+.engine-badge.unity{background:rgba(200,200,200,0.08);border:1px solid rgba(200,200,200,0.2);color:var(--unity-c);}
+.engine-badge.ue{background:rgba(0,133,202,0.08);border:1px solid rgba(0,133,202,0.25);color:var(--ue-c);}
+.engine-badge.prototype{background:rgba(200,169,110,0.08);border:1px solid rgba(200,169,110,0.25);color:var(--accent);}
+.project-title{font-family:var(--font-d);font-size:1.8rem;letter-spacing:0.04em;color:var(--text);margin-bottom:0.6rem;line-height:1.1;}
+.project-card.featured .project-title{font-size:2.4rem;}
+.project-desc{font-size:0.9rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem;}
+.project-tech{display:flex;flex-wrap:wrap;gap:0.5rem;}
+.tech-pill{font-family:var(--font-m);font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.2rem 0.6rem;background:var(--surface2);border:1px solid var(--border);color:var(--muted);border-radius:1px;}
+.project-arrow{position:absolute;top:1.5rem;right:1.5rem;width:32px;height:32px;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.8rem;transition:all 0.2s;opacity:0;}
+.project-card:hover .project-arrow{opacity:1;border-color:var(--accent);color:var(--accent);}
+
+.solar-wrap{width:100%;height:100%;position:relative;background:radial-gradient(ellipse at 38% 50%,#071a3a 0%,#050810 70%);}
+
+.modal-overlay{position:fixed;inset:0;background:rgba(10,11,15,0.94);z-index:1000;display:flex;align-items:center;justify-content:center;padding:2rem;opacity:0;pointer-events:none;transition:opacity 0.3s;backdrop-filter:blur(12px);}
+.modal-overlay.active{opacity:1;pointer-events:all;}
+.modal{background:var(--surface);border:1px solid var(--border2);max-width:780px;width:100%;max-height:88vh;overflow-y:auto;position:relative;transform:translateY(20px);transition:transform 0.3s;}
+.modal-overlay.active .modal{transform:translateY(0);}
+.modal-header-img{width:100%;height:260px;object-fit:cover;display:block;}
+.modal-body{padding:2.5rem;}
+.modal-engine-row{display:flex;gap:0.5rem;margin-bottom:1rem;}
+.modal-title{font-family:var(--font-d);font-size:2.2rem;letter-spacing:0.04em;color:var(--text);margin-bottom:0.75rem;}
+.modal-subtitle{font-size:0.9rem;color:var(--accent);font-family:var(--font-m);letter-spacing:0.08em;margin-bottom:1.5rem;}
+.modal-desc{font-size:0.95rem;color:var(--muted);line-height:1.8;margin-bottom:2rem;}
+.modal-section-label{font-family:var(--font-m);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;}
+.modal-features{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:2rem;}
+.modal-feature{display:flex;gap:0.6rem;align-items:flex-start;font-size:0.85rem;color:var(--muted);}
+.modal-feature::before{content:'▸';color:var(--accent);flex-shrink:0;margin-top:1px;}
+.modal-tech-row{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2rem;}
+.modal-close{position:absolute;top:1rem;right:1rem;width:36px;height:36px;background:rgba(10,11,15,0.7);border:1px solid var(--border2);color:var(--text);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;z-index:10;}
+.modal-close:hover{background:var(--surface2);border-color:var(--accent);}
+.modal-screenshots{display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;margin-bottom:2rem;}
+.modal-screenshots img{width:100%;aspect-ratio:9/16;object-fit:cover;border:1px solid var(--border);display:block;cursor:pointer;transition:opacity 0.2s,transform 0.2s;}
+.modal-screenshots img:hover{opacity:0.8;transform:scale(1.03);}
+
+#contact{background:rgba(10,11,15,0.9);text-align:center;}
+.contact-inner{max-width:680px;margin:0 auto;}
+.contact-eyebrow{font-family:var(--font-m);font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;}
+.contact-heading{font-family:var(--font-d);font-size:clamp(2.5rem,6vw,5rem);letter-spacing:0.03em;color:var(--text);line-height:1.05;margin-bottom:1.5rem;}
+.contact-sub{font-size:1rem;color:var(--muted);margin-bottom:3rem;line-height:1.7;}
+.contact-links{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;}
+.contact-link{display:flex;align-items:center;gap:0.6rem;font-family:var(--font-m);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:0.85rem 1.5rem;border:1px solid var(--border2);transition:all 0.2s;}
+.contact-link:hover{color:var(--accent);border-color:rgba(200,169,110,0.4);background:rgba(200,169,110,0.04);}
+
+footer{padding:2rem 3rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:rgba(15,17,23,0.96);position:relative;z-index:1;}
+footer p{font-family:var(--font-m);font-size:0.65rem;letter-spacing:0.1em;color:var(--muted);}
+footer a{color:var(--accent);text-decoration:none;}
+
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+.fade-in:nth-child(2){transition-delay:0.1s;}
+.fade-in:nth-child(3){transition-delay:0.2s;}
+
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:2000;display:flex;align-items:center;justify-content:center;padding:2rem;opacity:0;pointer-events:none;transition:opacity 0.2s;}
+.lightbox.active{opacity:1;pointer-events:all;}
+.lightbox img{max-height:90vh;max-width:90vw;object-fit:contain;border:1px solid var(--border2);}
+.lightbox-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:1px solid var(--border2);color:var(--text);width:40px;height:40px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.lightbox-close:hover{border-color:var(--accent);color:var(--accent);}
+
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem;}
+  .nav-links{gap:1.5rem;}
+  section{padding:4rem 1.5rem;}
+  #hero{padding:0 1.5rem;}
+  .about-grid{grid-template-columns:1fr;gap:3rem;}
+  .skills-grid{grid-template-columns:1fr 1fr;}
+  .projects-grid{grid-template-columns:1fr;}
+  .project-card.featured{grid-template-columns:1fr;}
+  .project-card.featured .project-img{min-height:260px;}
+  footer{flex-direction:column;gap:0.5rem;text-align:center;}
+  .hero-scroll{display:none;}
+  .modal-screenshots{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:600px){
+  .skills-grid{grid-template-columns:1fr;}
+  .modal-features{grid-template-columns:1fr;}
+}
+</style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="bg-animation"></div>
-    
-    <!-- Floating particles -->
-    <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
-    <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
-    <div class="particle" style="left: 30%; animation-delay: 4s;"></div>
-    <div class="particle" style="left: 40%; animation-delay: 1s;"></div>
-    <div class="particle" style="left: 50%; animation-delay: 3s;"></div>
-    <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
-    <div class="particle" style="left: 70%; animation-delay: 2.5s;"></div>
-    <div class="particle" style="left: 80%; animation-delay: 4.5s;"></div>
-    <div class="particle" style="left: 90%; animation-delay: 1.5s;"></div>
 
-    <header>
-        <h1>Aayush Jangir</h1>
-        <p>Aspiring Unreal Engine Developer</p>
-        <div class="status-badge">📚 Phase 1, Week 1 - Active Learning</div>
-    </header>
+<canvas id="bg-canvas"></canvas>
 
-    <nav>
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#journey">Learning Journey</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">DY</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-    <div class="container">
-        <!-- About Section -->
-        <section id="about">
-            <h2>About Me</h2>
-            <div class="about-content">
-                <p>
-                    Hello! I'm <strong>Aayush Jangir</strong>, an aspiring Unreal Engine developer following a structured 
-                    36-month roadmap to become a professional game developer. Currently in <strong>Phase 1 (Foundation)</strong>, 
-                    I'm focusing on mastering Blueprint visual scripting and building complete, shippable games from scratch.
-                </p>
-                <p>
-                    I believe in learning by doing - shipping actual games, not just consuming tutorials. 
-                    Every project you see here represents real learning, real challenges overcome, and real progress 
-                    toward my goal of becoming a senior Unreal Engine developer.
-                </p>
-                <p>
-                    <strong>Current Focus:</strong> Blueprint fundamentals, player movement systems, game architecture, 
-                    collision detection, and UI implementation. Building 3-5 complete games during Phase 1 to establish 
-                    a strong foundation before moving to C++ in Phase 2.
-                </p>
-                <p>
-                    <strong>Philosophy:</strong> Finished games > Perfect games. Consistent progress > Sporadic bursts. 
-                    Public learning > Tutorial hell.
-                </p>
-            </div>
-        </section>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-label">Portfolio — Game Developer</div>
+    <h1 class="hero-name">DETREAR<br><span>YAEGER</span><span class="cursor-blink"></span></h1>
+    <p class="hero-tagline">Indie Game Developer crafting interactive worlds with Unity &amp; Unreal Engine 5.</p>
+    <div class="hero-tags">
+      <span class="tag open">Open to Work</span>
+      <span class="tag unity">Unity</span>
+      <span class="tag ue">Unreal Engine 5</span>
+      <span class="tag">B.Tech Graduate</span>
+      <span class="tag">Adv. Diploma — Game Dev</span>
+      <span class="tag">Hyderabad, IN</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-secondary">Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span class="scroll-text">Scroll to explore</span>
+  </div>
+</section>
 
-        <!-- Skills Section -->
-        <section id="skills">
-            <h2>Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>🎮 Game Engines</h3>
-                    <ul>
-                        <li>Unreal Engine 5.7.1</li>
-                        <li>Blueprint Visual Scripting</li>
-                        <li>Unity (Previous experience)</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>💻 Programming</h3>
-                    <ul>
-                        <li>Blueprint Development</li>
-                        <li>Event-Driven Architecture</li>
-                        <li>Game Logic Design</li>
-                        <li>C++ (Phase 2 - Upcoming)</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>🕹️ Game Development</h3>
-                    <ul>
-                        <li>Character Movement Systems</li>
-                        <li>Collision Detection</li>
-                        <li>UI/UX (UMG Widgets)</li>
-                        <li>Actor Communication</li>
-                        <li>Game Architecture</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>🛠️ Tools & Workflow</h3>
-                    <ul>
-                        <li>Git Version Control</li>
-                        <li>GitHub</li>
-                        <li>Documentation</li>
-                        <li>Project Organization</li>
-                        <li>Agile Development</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header fade-in">
+    <span class="section-num">01</span>
+    <h2 class="section-title">ABOUT</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text fade-in">
+      <p>I'm <strong>Detrear Yaeger</strong>, an <span class="highlight">indie game developer</span> with a deep passion for building compelling game experiences from the ground up. I hold a <strong>Bachelor of Technology</strong> and am currently completing an <strong>Advanced Diploma in Game Development</strong> specializing in both Unity and Unreal Engine.</p>
+      <p>My philosophy is simple: <strong>build first, polish second</strong>. I thrive in the prototyping phase — turning a design idea into a playable experience as fast as possible, then iterating relentlessly. Every project I ship teaches me something new about systems design, physics, and player psychology.</p>
+      <p>I'm equally at home in Unity's C# ecosystem and Unreal's Blueprint visual scripting, giving me the flexibility to choose the <span class="highlight">right tool for the right game</span>.</p>
+    </div>
+    <div class="about-stats fade-in">
+      <div class="stat-card"><div class="stat-num">2+</div><div class="stat-label">Engines Mastered</div></div>
+      <div class="stat-card"><div class="stat-num">5+</div><div class="stat-label">Projects Built</div></div>
+      <div class="stat-card"><div class="stat-num">20+</div><div class="stat-label">Levels Designed</div></div>
+      <div class="stat-card"><div class="stat-num">∞</div><div class="stat-label">Iterations Shipped</div></div>
+    </div>
+  </div>
+</section>
 
-        <!-- Projects Section -->
-        <section id="projects">
-            <h2>Projects</h2>
-            <div class="projects-grid">
-                <!-- Project 1 - Coin Collector -->
-                <div class="project-card">
-                    <div class="project-image">
-                        🪙 Coin Collector
-                    </div>
-                    <div class="project-content">
-                        <h3>Coin Collector</h3>
-                        <div class="project-meta">Week 1 Project • December 2025</div>
-                        <p class="project-description">
-                            A 3D coin collection game where players navigate an environment to collect all coins. 
-                            Built entirely with Blueprints to learn fundamental game development concepts and player interaction systems.
-                        </p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Blueprints</span>
-                            <span class="tech-tag">UE 5.7.1</span>
-                            <span class="tech-tag">3D Movement</span>
-                            <span class="tech-tag">Collision</span>
-                            <span class="tech-tag">UI</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://drive.google.com/file/d/1bLjZZ8gYJerO6k5047mOykOZxn1Kdgfb/view?usp=drive_link" class="btn btn-primary" target="_blank">
-                                📥 Download Game
-                            </a>
-                            <span class="btn btn-disabled">💻 Code Coming Soon</span>
-                        </div>
-                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(102, 126, 234, 0.2); font-size: 0.9rem; color: #888;">
-                            <strong style="color: #667eea;">What I Learned:</strong>
-                            <ul style="margin-top: 0.5rem; padding-left: 1.5rem; color: #b0b0b0;">
-                                <li>Blueprint event system (BeginPlay, Tick, Custom Events)</li>
-                                <li>Character Movement Component setup</li>
-                                <li>Overlap events for collision detection</li>
-                                <li>UMG Widget creation for score tracking</li>
-                                <li>Actor spawning and placement</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header fade-in">
+    <span class="section-num">02</span>
+    <h2 class="section-title">SKILLS</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-group fade-in">
+      <div class="skill-group-icon">🎮</div>
+      <div class="skill-group-title">Game Engines</div>
+      <div class="skill-item"><span class="skill-name">Unity (C#)</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="82"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Unreal Engine 5</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="75"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Blueprint (UE5)</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="78"></div></div></div>
+      <div class="skill-item"><span class="skill-name">UE Physics</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="65"></div></div></div>
+    </div>
+    <div class="skill-group fade-in">
+      <div class="skill-group-icon">💻</div>
+      <div class="skill-group-title">Programming</div>
+      <div class="skill-item"><span class="skill-name">C# (Unity)</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="80"></div></div></div>
+      <div class="skill-item"><span class="skill-name">C++ (Unreal)</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="55"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Git / GitHub</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="72"></div></div></div>
+      <div class="skill-item"><span class="skill-name">OOP Principles</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="85"></div></div></div>
+    </div>
+    <div class="skill-group fade-in">
+      <div class="skill-group-icon">🧩</div>
+      <div class="skill-group-title">Game Design</div>
+      <div class="skill-item"><span class="skill-name">Level Design</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="78"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Physics Systems</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="80"></div></div></div>
+      <div class="skill-item"><span class="skill-name">UI / UX (Game)</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="70"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Prototyping</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="88"></div></div></div>
+    </div>
+  </div>
+</section>
 
-                <!-- Placeholder for future Week 4 project -->
-                <div class="project-card" style="opacity: 0.7; border: 2px dashed rgba(102, 126, 234, 0.3);">
-                    <div class="project-image">
-                        🐦 Next Project
-                    </div>
-                    <div class="project-content">
-                        <h3>Flappy Bird Clone</h3>
-                        <div class="project-meta">Week 4 Project • Coming January 2026</div>
-                        <p class="project-description">
-                            Complete game with score system, death mechanics, game restart functionality, and UI integration. 
-                            Will demonstrate full game loop implementation and polish.
-                        </p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Planned</span>
-                            <span class="tech-tag">Game Loop</span>
-                            <span class="tech-tag">UI Systems</span>
-                        </div>
-                    </div>
-                </div>
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header fade-in">
+    <span class="section-num">03</span>
+    <h2 class="section-title">PROJECTS</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-grid">
 
-                <!-- Placeholder for Phase 1 Capstone -->
-                <div class="project-card" style="opacity: 0.7; border: 2px dashed rgba(102, 126, 234, 0.3);">
-                    <div class="project-image">
-                        🎯 Phase 1 Capstone
-                    </div>
-                    <div class="project-content">
-                        <h3>Phase 1 Capstone Game</h3>
-                        <div class="project-meta">Week 12 Project • Coming February 2026</div>
-                        <p class="project-description">
-                            A polished, complete game showcasing all Phase 1 skills: player mechanics, 
-                            game architecture, UI systems, and professional workflows. Portfolio-worthy project.
-                        </p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Future</span>
-                            <span class="tech-tag">Capstone</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Learning Journey Section -->
-        <section id="journey">
-            <h2>My Learning Journey</h2>
-            <p style="margin-bottom: 1.5rem; color: #b0b0b0; font-size: 1.05rem;">
-                Following a structured <strong style="color: #667eea;">36-month roadmap</strong> from complete beginner to senior Unreal Engine developer. 
-                This journey is about consistent progress, shipping real games, and building professional skills one week at a time.
-            </p>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Phase 1: Foundation</h3>
-                        <span class="date">December 2025 - February 2026 (In Progress) 🔥</span>
-                        <p style="margin-top: 0.5rem; color: #b0b0b0;">
-                            <strong style="color: #fff;">Focus:</strong> Blueprint fundamentals, core game systems, shipping 3-5 complete games
-                        </p>
-                        <p style="margin-top: 0.5rem; color: #b0b0b0;"><strong style="color: #4caf50;">✅ Completed:</strong></p>
-                        <ul style="color: #b0b0b0;">
-                            <li>Week 1: Blueprint Basics & First Game (Coin Collector)</li>
-                            <li>Git & GitHub version control setup</li>
-                            <li>Professional portfolio website creation</li>
-                            <li>itch.io publishing workflow</li>
-                        </ul>
-                        <p style="margin-top: 0.5rem; color: #b0b0b0;"><strong style="color: #667eea;">🎯 Current:</strong> Week 2 - Actor lifecycle and event systems</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Phase 2: Intermediate Development</h3>
-                        <span class="date">March 2026 - July 2026 (Upcoming)</span>
-                        <p style="margin-top: 0.5rem; color: #b0b0b0;">
-                            <strong style="color: #fff;">Focus:</strong> C++ introduction, complex systems (inventory, AI, save/load), 
-                            professional workflows, animation systems, and performance optimization
-                        </p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Phase 3+: Advanced Specialization</h3>
-                        <span class="date">August 2026 onwards (Planned)</span>
-                        <p style="margin-top: 0.5rem; color: #b0b0b0;">
-                            <strong style="color: #fff;">Focus:</strong> Multiplayer networking, Gameplay Ability System (GAS), 
-                            advanced AI with behavior trees, graphics programming, and engine architecture
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact">
-            <h2>Get In Touch</h2>
-            <p style="text-align: center; margin-bottom: 2rem; color: #b0b0b0; font-size: 1.05rem;">
-                I'm actively learning and building. Feel free to reach out if you'd like to discuss 
-                game development, provide feedback on my projects, collaborate, or just connect!
-            </p>
-            <div class="contact-links">
-                <a href="/cdn-cgi/l/email-protection#b8dcddcccaddd9cac1d9dddfddcaf8dfd5d9d1d496dbd7d5" class="contact-link">
-                    <span style="font-size: 1.5rem;">📧</span> Email
-                </a>
-                <a href="https://github.com/Aayush-jangir" class="contact-link" target="_blank">
-                    <span style="font-size: 1.5rem;">💻</span> GitHub
-                </a>
-                <a href="https://detrear.itch.io" class="contact-link" target="_blank">
-                    <span style="font-size: 1.5rem;">🎮</span> itch.io
-                </a>
-                <a href="https://www.linkedin.com/in/aayush-jangir-20b62a202/" class="contact-link" target="_blank">
-                    <span style="font-size: 1.5rem;">💼</span> LinkedIn
-                </a>
-            </div>
-        </section>
+    <!-- FEATURED: Mirror Reflection -->
+    <div class="project-card featured fade-in" onclick="openModal('mirror')">
+      <div class="project-img">
+        <div class="ss-mosaic">
+          <img src="ss4.png" alt="Mirror Reflection main menu" class="ss-main" onerror="this.parentElement.parentElement.style.background='#1c1f2a'">
+          <img src="ss3.png" alt="Mirror Reflection level 20" onerror="this.style.display='none'">
+          <img src="ss1.png" alt="Mirror Reflection level complete" onerror="this.style.display='none'">
+        </div>
+        <div class="ss-overlay"></div>
+      </div>
+      <div class="project-info">
+        <div class="project-engine">
+          <span class="engine-badge unity">Unity 2D</span>
+          <span class="engine-badge prototype">Prototype</span>
+        </div>
+        <h3 class="project-title">MIRROR REFLECTION</h3>
+        <p class="project-desc">A light-puzzle game where players fire a beam and guide it through mirrors to reach the target. 20+ handcrafted levels with escalating complexity, a countdown timer, and multiple obstacle types.</p>
+        <div class="project-tech">
+          <span class="tech-pill">C#</span>
+          <span class="tech-pill">Unity Physics</span>
+          <span class="tech-pill">Raycasting</span>
+          <span class="tech-pill">Level Design</span>
+          <span class="tech-pill">UI System</span>
+        </div>
+        <div style="margin-top:1.5rem;">
+          <button class="btn-primary" onclick="event.stopPropagation();openModal('mirror')">View Details</button>
+        </div>
+      </div>
+      <div class="project-arrow">↗</div>
     </div>
 
-    <!-- Scroll to top button -->
-    <div class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-        ↑
+    <!-- Solar System -->
+    <div class="project-card fade-in" onclick="openModal('solar')">
+      <div class="project-img solar-wrap">
+        <svg viewBox="0 0 400 225" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;display:block;">
+          <defs><radialGradient id="sg" cx="35%" cy="50%"><stop offset="0%" stop-color="#ffe066"/><stop offset="55%" stop-color="#f5a200"/><stop offset="100%" stop-color="#c85000" stop-opacity="0"/></radialGradient></defs>
+          <circle cx="12" cy="18" r="0.9" fill="white" opacity="0.5"/><circle cx="58" cy="42" r="0.6" fill="white" opacity="0.4"/>
+          <circle cx="200" cy="22" r="1" fill="white" opacity="0.6"/><circle cx="340" cy="58" r="0.7" fill="white" opacity="0.5"/>
+          <circle cx="378" cy="12" r="0.9" fill="white" opacity="0.4"/><circle cx="88" cy="192" r="0.7" fill="white" opacity="0.3"/>
+          <circle cx="308" cy="196" r="0.8" fill="white" opacity="0.5"/><circle cx="148" cy="212" r="0.5" fill="white" opacity="0.4"/>
+          <circle cx="260" cy="72" r="0.6" fill="white" opacity="0.35"/><circle cx="22" cy="168" r="0.8" fill="white" opacity="0.4"/>
+          <circle cx="185" cy="145" r="0.5" fill="white" opacity="0.3"/><circle cx="320" cy="130" r="0.7" fill="white" opacity="0.3"/>
+          <ellipse cx="90" cy="112" rx="55" ry="7" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+          <ellipse cx="90" cy="112" rx="84" ry="11" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+          <ellipse cx="90" cy="112" rx="115" ry="16" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/>
+          <ellipse cx="90" cy="112" rx="150" ry="21" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.8"/>
+          <circle cx="90" cy="112" r="22" fill="url(#sg)"/>
+          <circle cx="145" cy="112" r="5" fill="#4a9eff"/>
+          <circle cx="174" cy="112" r="7.5" fill="#e87a3a"/>
+          <circle cx="205" cy="112" r="9" fill="#d4a935"/>
+          <ellipse cx="240" cy="112" rx="14" ry="3" fill="none" stroke="#b89040" stroke-width="1.8" opacity="0.7"/>
+          <circle cx="240" cy="112" r="8.5" fill="#c8a050"/>
+        </svg>
+      </div>
+      <div class="project-info">
+        <div class="project-engine"><span class="engine-badge ue">Unreal Engine 5</span></div>
+        <h3 class="project-title">SOLAR SYSTEM SIM</h3>
+        <p class="project-desc">NASA-accurate planetary simulation in UE5 Blueprints. Real orbital mechanics, scaled distances, and an interactive free-fly exploration camera.</p>
+        <div class="project-tech">
+          <span class="tech-pill">Blueprint</span><span class="tech-pill">UE5</span><span class="tech-pill">Simulation</span><span class="tech-pill">NASA Data</span>
+        </div>
+      </div>
+      <div class="project-arrow">↗</div>
     </div>
 
-    <footer>
-        <p style="color: #fff; font-size: 1.1rem;">&copy; 2025 Aayush Jangir. All rights reserved.</p>
-        <p style="margin-top: 0.5rem;">
-            Built with passion for game development | Phase 1, Week 1 of 144 weeks
-        </p>
-        <p style="margin-top: 0.5rem; opacity: 0.7; font-size: 0.9rem;">
-            Last Updated: December 2025
-        </p>
-    </footer>
+  </div>
+</section>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // Scroll to top button visibility
-        window.addEventListener('scroll', function() {
-            const scrollTop = document.querySelector('.scroll-top');
-            if (window.pageYOffset > 300) {
-                scrollTop.classList.add('visible');
-            } else {
-                scrollTop.classList.remove('visible');
-            }
-        });
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <p class="contact-eyebrow fade-in">Let's build something</p>
+    <h2 class="contact-heading fade-in">READY TO<br>COLLABORATE?</h2>
+    <p class="contact-sub fade-in">I'm actively looking for opportunities in game development — junior roles, internships, or project collaborations. Let's talk.</p>
+    <div class="contact-links fade-in">
+      <a href="mailto:Detrearyaeger@gmail.com" class="contact-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+        Detrearyaeger@gmail.com
+      </a>
+      <a href="https://github.com/Aayush-jangir" target="_blank" rel="noopener" class="contact-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</section>
 
-        // Smooth scroll for navigation links
-        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAtt
+<footer>
+  <p>© 2026 Detrear Yaeger · Indie Game Developer · Hyderabad, IN</p>
+  <p>Built with <a href="https://pages.github.com" target="_blank">GitHub Pages</a> · <a href="https://github.com/Aayush-jangir" target="_blank">github.com/Aayush-jangir</a></p>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    <div id="modal-inner"></div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+/* ═══════════════════════════════════════
+   LIVE PARTICLE + GRID BACKGROUND
+   Nodes float & connect with lines.
+   Mouse cursor repels nearby particles.
+   A slow scan-line sweeps the screen.
+   Gold nodes pulse. Blue nodes twinkle.
+═══════════════════════════════════════ */
+(function(){
+  const cv = document.getElementById('bg-canvas');
+  const cx = cv.getContext('2d');
+  let W, H;
+  let pts = [];
+  const mouse = {x:-9999, y:-9999};
+  const N = 85;
+
+  function resize(){
+    W = cv.width = window.innerWidth;
+    H = cv.height = window.innerHeight;
+  }
+
+  function rnd(a,b){ return Math.random()*(b-a)+a; }
+
+  function mkPt(){
+    const isNode = Math.random() > 0.78;
+    const isBlue = Math.random() > 0.65;
+    return {
+      x: rnd(0, W),
+      y: rnd(0, H),
+      vx: rnd(-0.15, 0.15),
+      vy: rnd(-0.12, 0.12),
+      r: isNode ? rnd(2.8, 4.8) : rnd(0.9, 1.8),
+      isNode,
+      isBlue,
+      phase: rnd(0, Math.PI*2),
+      spd: rnd(0.009, 0.025),
+      baseAlpha: rnd(0.18, 0.52)
+    };
+  }
+
+  function init(){
+    resize();
+    pts = Array.from({length:N}, mkPt);
+  }
+
+  let scanY = 0;
+
+  function frame(ts){
+    cx.clearRect(0, 0, W, H);
+
+    // update positions
+    for(const p of pts){
+      p.phase += p.spd;
+
+      // mouse repel
+      const dx = p.x - mouse.x;
+      const dy = p.y - mouse.y;
+      const d2 = dx*dx + dy*dy;
+      if(d2 < 14400){ // 120px^2
+        const d = Math.sqrt(d2);
+        const f = (120 - d) / 120 * 0.45;
+        p.vx += (dx/d) * f;
+        p.vy += (dy/d) * f;
+      }
+
+      // soft speed cap
+      const spd = Math.sqrt(p.vx*p.vx + p.vy*p.vy);
+      if(spd > 1.2){ p.vx *= 0.96; p.vy *= 0.96; }
+
+      p.vx *= 0.9995;
+      p.vy *= 0.9995;
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // wrap edges
+      if(p.x < -8) p.x = W+8;
+      else if(p.x > W+8) p.x = -8;
+      if(p.y < -8) p.y = H+8;
+      else if(p.y > H+8) p.y = -8;
+    }
+
+    // draw connections
+    cx.lineWidth = 0.5;
+    for(let i=0; i<pts.length; i++){
+      for(let j=i+1; j<pts.length; j++){
+        const a = pts[i], b = pts[j];
+        const dx = a.x-b.x, dy = a.y-b.y;
+        const d = Math.sqrt(dx*dx + dy*dy);
+        if(d < 135){
+          const alpha = (1 - d/135) * 0.11;
+          cx.beginPath();
+          cx.strokeStyle = `rgba(200,169,110,${alpha})`;
+          cx.moveTo(a.x, a.y);
+          cx.lineTo(b.x, b.y);
+          cx.stroke();
+        }
+      }
+    }
+
+    // draw points
+    for(const p of pts){
+      const pulse = Math.sin(p.phase);
+      const a = p.baseAlpha * (0.7 + 0.3*pulse);
+
+      if(p.isNode){
+        // ring
+        cx.beginPath();
+        cx.arc(p.x, p.y, p.r + 2.5 + pulse*1.8, 0, Math.PI*2);
+        cx.strokeStyle = p.isBlue
+          ? `rgba(0,133,202,${a*0.35})`
+          : `rgba(200,169,110,${a*0.35})`;
+        cx.lineWidth = 0.7;
+        cx.stroke();
+        // core
+        cx.beginPath();
+        cx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        cx.fillStyle = p.isBlue
+          ? `rgba(0,133,202,${a})`
+          : `rgba(200,169,110,${a})`;
+        cx.fill();
+      } else {
+        cx.beginPath();
+        cx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        cx.fillStyle = p.isBlue
+          ? `rgba(60,160,220,${a*0.8})`
+          : `rgba(200,169,110,${a*0.8})`;
+        cx.fill();
+      }
+    }
+
+    // moving scan line
+    scanY = (scanY + 0.4) % H;
+    const g = cx.createLinearGradient(0, scanY-50, 0, scanY+50);
+    g.addColorStop(0, 'rgba(200,169,110,0)');
+    g.addColorStop(0.5, 'rgba(200,169,110,0.025)');
+    g.addColorStop(1, 'rgba(200,169,110,0)');
+    cx.fillStyle = g;
+    cx.fillRect(0, scanY-50, W, 100);
+
+    requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('resize', resize);
+  window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+  window.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+
+  init();
+  requestAnimationFrame(frame);
+})();
+
+/* ═══════════════════════════════════════
+   MODAL SYSTEM
+═══════════════════════════════════════ */
+const PROJECTS = {
+  mirror: {
+    title:'MIRROR REFLECTION', subtitle:'Unity 2D · Light Puzzle Prototype',
+    engine:'unity', engineLabel:'Unity 2D', genre:'Puzzle',
+    headerImg:'ss3.png',
+    desc:'Mirror Reflection is a 2D light-puzzle game where the player fires a beam from a source and must guide it through a network of mirrors to hit the target. The game features 20+ handcrafted levels with escalating difficulty, multiple mirror types, obstacles that block or absorb light, a countdown timer, and a full level-select menu. Built entirely from scratch in Unity with zero prior Unity experience.',
+    features:['20+ handcrafted puzzle levels','Multiple mirror types & angles','Countdown timer per level','Level complete / fail states','Full menu & level select UI','Reset & retry system','Obstacle & blocker objects','3 attempts per level system'],
+    tech:['C#','Unity 2D','Physics2D','Raycasting','LineRenderer','SceneManagement','UI Toolkit'],
+    screenshots:['ss4.png','ss3.png','ss2.png','ss1.png']
+  },
+  solar: {
+    title:'SOLAR SYSTEM SIMULATION', subtitle:'Unreal Engine 5 · Blueprints',
+    engine:'ue', engineLabel:'Unreal Engine 5', genre:'Simulation',
+    headerImg:null,
+    desc:'An interactive Solar System simulation built in Unreal Engine 5 using 100% Blueprint visual scripting. Planetary bodies are scaled using NASA-accurate data with real relative distances, orbital velocities, and rotational periods. The free-fly camera system allows exploration through the solar system.',
+    features:['NASA-accurate planetary data','Real orbital mechanics','Free-fly exploration camera','Scaled planetary sizes','Orbital period simulation','Blueprint-only (no C++)','Dynamic space lighting','Planet information system'],
+    tech:['Blueprint','UE5','Simulation','Orbital Mechanics','Actor Components','NASA Data'],
+    screenshots:[]
+  }
+};
+
+function openModal(id){
+  const p = PROJECTS[id];
+  if(!p) return;
+  const bc = p.engine==='unity'?'unity':'ue';
+
+  const headerHTML = p.headerImg
+    ? `<img src="${p.headerImg}" class="modal-header-img" alt="${p.title}" onerror="this.style.display='none'">`
+    : `<div style="height:130px;background:var(--surface2);display:flex;align-items:center;justify-content:center;"><span style="font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--border2);">${p.genre.toUpperCase()}</span></div>`;
+
+  const ssHTML = p.screenshots.length ? `
+    <p class="modal-section-label">Screenshots</p>
+    <div class="modal-screenshots">
+      ${p.screenshots.map(s=>`<img src="${s}" alt="" loading="lazy" onclick="openLightbox('${s}')">`).join('')}
+    </div>` : '';
+
+  document.getElementById('modal-inner').innerHTML = `
+    ${headerHTML}
+    <div class="modal-body">
+      <div class="modal-engine-row">
+        <span class="engine-badge ${bc}">${p.engineLabel}</span>
+        <span class="engine-badge prototype">${p.genre}</span>
+      </div>
+      <h2 class="modal-title">${p.title}</h2>
+      <p class="modal-subtitle">${p.subtitle}</p>
+      <p class="modal-desc">${p.desc}</p>
+      <p class="modal-section-label">Key Features</p>
+      <div class="modal-features">${p.features.map(f=>`<div class="modal-feature">${f}</div>`).join('')}</div>
+      <p class="modal-section-label">Tech Stack</p>
+      <div class="modal-tech-row">${p.tech.map(t=>`<span class="tech-pill">${t}</span>`).join('')}</div>
+      ${ssHTML}
+    </div>`;
+
+  document.getElementById('modal-overlay').classList.add('active');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(e){
+  if(e.target===document.getElementById('modal-overlay')) closeModalDirect();
+}
+function closeModalDirect(){
+  document.getElementById('modal-overlay').classList.remove('active');
+  document.body.style.overflow='';
+}
+function openLightbox(src){
+  document.getElementById('lightbox-img').src=src;
+  document.getElementById('lightbox').classList.add('active');
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('active');
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){ closeModalDirect(); closeLightbox(); }
+});
+
+/* ── FADE IN ── */
+const ob = new IntersectionObserver(entries=>{
+  entries.forEach(el=>{ if(el.isIntersecting){ el.target.classList.add('visible'); ob.unobserve(el.target); } });
+},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el=>ob.observe(el));
+
+/* ── SKILL BARS ── */
+const sb = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.skill-bar').forEach(b=>{
+        setTimeout(()=>{ b.style.width=b.getAttribute('data-width')+'%'; }, 200);
+      });
+      sb.unobserve(e.target);
+    }
+  });
+},{threshold:0.3});
+document.querySelectorAll('.skill-group').forEach(el=>sb.observe(el));
+</script>
+</body>
+</html>
