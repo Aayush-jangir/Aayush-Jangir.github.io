@@ -10,9 +10,12 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --bg:#0a0b0f;--bg2:#0f1117;
-  --surface:#161820;--surface2:#1c1f2a;
-  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --bg:#0a0b0f;
+  --surface:rgba(16,18,26,0.72);
+  --surface2:rgba(22,25,36,0.85);
+  --card:rgba(18,20,30,0.78);
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.13);
   --text:#e8e9ef;--muted:#7a7f96;
   --accent:#c8a96e;--accent2:#e8c98a;
   --green:#4ade80;--unity-c:#c8c8c8;--ue-c:#0085ca;
@@ -21,17 +24,49 @@
   --font-m:'JetBrains Mono',monospace;
 }
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:var(--font-b);font-size:16px;line-height:1.6;overflow-x:hidden;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-b);
+  font-size:16px;
+  line-height:1.6;
+  overflow-x:hidden;
+}
 
-#bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+/* CANVAS — truly behind everything */
+#bg-canvas{
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  z-index:0;
+  pointer-events:none;
+}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 3rem;display:flex;justify-content:space-between;align-items:center;background:rgba(10,11,15,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+/* All sections sit above canvas but use translucent backgrounds */
+nav,section,footer{position:relative;z-index:2;}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;
+  z-index:100;
+  padding:1.2rem 3rem;
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(10,11,15,0.75);
+  backdrop-filter:blur(22px);
+  border-bottom:1px solid var(--border);
+}
 .nav-logo{font-family:var(--font-d);font-size:1.5rem;letter-spacing:0.08em;color:var(--accent);text-decoration:none;}
 .nav-links{display:flex;gap:2.5rem;list-style:none;}
 .nav-links a{font-family:var(--font-m);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;}
 .nav-links a:hover{color:var(--text);}
 
-#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 3rem;position:relative;overflow:hidden;}
+/* HERO — fully transparent, canvas shows through */
+#hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:0 3rem;
+  background:transparent;
+}
 .hero-content{position:relative;z-index:1;max-width:900px;}
 .hero-label{font-family:var(--font-m);font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;display:flex;align-items:center;gap:0.75rem;}
 .hero-label::before{content:'';display:block;width:32px;height:1px;background:var(--accent);}
@@ -39,17 +74,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 3rem;display:
 .hero-name span{color:var(--accent);}
 .hero-tagline{font-size:1.1rem;font-weight:300;color:var(--muted);max-width:500px;margin-bottom:2.5rem;}
 .hero-tags{display:flex;flex-wrap:wrap;gap:0.6rem;margin-bottom:3rem;}
-.tag{font-family:var(--font-m);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.35rem 0.9rem;border:1px solid var(--border2);border-radius:2px;color:var(--muted);background:rgba(22,24,32,0.75);backdrop-filter:blur(6px);transition:all 0.2s;}
+.tag{font-family:var(--font-m);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.35rem 0.9rem;border:1px solid var(--border2);border-radius:2px;color:var(--muted);background:rgba(16,18,26,0.6);backdrop-filter:blur(8px);transition:all 0.2s;}
 .tag:hover{border-color:var(--accent);color:var(--accent);}
 .tag.unity{border-color:rgba(200,200,200,0.25);color:var(--unity-c);}
 .tag.ue{border-color:rgba(0,133,202,0.35);color:var(--ue-c);}
 .tag.open{border-color:rgba(74,222,128,0.4);color:var(--green);background:rgba(74,222,128,0.06);}
 .tag.open::before{content:'●';margin-right:0.4rem;animation:blink 1.5s infinite;font-size:0.5rem;vertical-align:middle;}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.15}}
 .hero-cta{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;}
 .btn-primary{font-family:var(--font-m);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.85rem 2rem;background:var(--accent);color:#0a0b0f;border:none;cursor:pointer;text-decoration:none;display:inline-block;font-weight:500;transition:all 0.2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));}
 .btn-primary:hover{background:var(--accent2);transform:translateY(-2px);}
-.btn-secondary{font-family:var(--font-m);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.85rem 2rem;background:transparent;color:var(--muted);border:1px solid var(--border2);cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.2s;}
+.btn-secondary{font-family:var(--font-m);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.85rem 2rem;background:rgba(16,18,26,0.5);backdrop-filter:blur(8px);color:var(--muted);border:1px solid var(--border2);cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.2s;}
 .btn-secondary:hover{color:var(--text);border-color:rgba(255,255,255,0.3);}
 .hero-scroll{position:absolute;bottom:2.5rem;left:3rem;display:flex;align-items:center;gap:0.75rem;z-index:1;}
 .scroll-line{width:40px;height:1px;background:var(--border2);position:relative;overflow:hidden;}
@@ -58,51 +93,67 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 3rem;display:
 .scroll-text{font-family:var(--font-m);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);}
 .cursor-blink{display:inline-block;width:4px;height:0.85em;background:var(--accent);vertical-align:middle;animation:blink 1.2s infinite;margin-left:4px;}
 
-section{padding:6rem 3rem;position:relative;z-index:1;}
+/* SECTIONS — translucent so canvas bleeds through */
+section{padding:6rem 3rem;}
+#about{background:rgba(12,13,19,0.7);backdrop-filter:blur(4px);}
+#skills{background:rgba(10,11,16,0.6);backdrop-filter:blur(3px);}
+#projects{background:rgba(12,13,19,0.68);backdrop-filter:blur(4px);}
+#contact{background:rgba(10,11,16,0.6);backdrop-filter:blur(3px);text-align:center;}
+
 .section-header{display:flex;align-items:center;gap:1.5rem;margin-bottom:4rem;}
 .section-num{font-family:var(--font-m);font-size:0.65rem;color:var(--accent);letter-spacing:0.1em;}
 .section-title{font-family:var(--font-d);font-size:clamp(2rem,5vw,3.5rem);letter-spacing:0.04em;color:var(--text);}
 .section-line{flex:1;height:1px;background:var(--border);max-width:300px;}
 
-#about{background:rgba(15,17,23,0.93);backdrop-filter:blur(2px);}
+/* ABOUT */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
 .about-text p{color:var(--muted);font-size:1.05rem;line-height:1.8;margin-bottom:1.5rem;}
 .about-text strong{color:var(--text);font-weight:400;}
 .highlight{color:var(--accent);}
 .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
-.stat-card{background:var(--surface);border:1px solid var(--border);padding:1.5rem;position:relative;transition:border-color 0.2s;}
+.stat-card{background:var(--card);border:1px solid var(--border);padding:1.5rem;position:relative;transition:border-color 0.2s;backdrop-filter:blur(6px);}
 .stat-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--accent);opacity:0;transition:opacity 0.2s;}
 .stat-card:hover{border-color:var(--border2);}
 .stat-card:hover::before{opacity:1;}
 .stat-num{font-family:var(--font-d);font-size:2.5rem;color:var(--accent);line-height:1;margin-bottom:0.3rem;}
 .stat-label{font-family:var(--font-m);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
 
-#skills{background:rgba(10,11,15,0.9);}
+/* SKILLS */
 .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
-.skill-group{background:var(--surface);border:1px solid var(--border);padding:2rem;transition:border-color 0.3s,transform 0.3s;}
-.skill-group:hover{border-color:var(--border2);transform:translateY(-3px);}
+.skill-group{background:var(--card);border:1px solid var(--border);padding:2rem;transition:border-color 0.3s,transform 0.3s;backdrop-filter:blur(6px);}
+.skill-group:hover{border-color:rgba(200,169,110,0.3);transform:translateY(-4px);}
 .skill-group-icon{font-size:1.5rem;margin-bottom:1rem;}
 .skill-group-title{font-family:var(--font-m);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;}
 .skill-item{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.9rem;}
 .skill-name{font-size:0.9rem;color:var(--text);font-weight:300;}
 .skill-bar-wrap{width:100px;height:2px;background:var(--border);position:relative;overflow:hidden;}
-.skill-bar{position:absolute;top:0;left:0;height:100%;background:var(--accent);width:0;transition:width 1.2s cubic-bezier(0.16,1,0.3,1);}
+.skill-bar{position:absolute;top:0;left:0;height:100%;background:var(--accent);width:0;transition:width 1.4s cubic-bezier(0.16,1,0.3,1);}
 
-#projects{background:rgba(15,17,23,0.93);}
+/* PROJECTS */
 .projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;}
-.project-card{background:var(--surface);border:1px solid var(--border);overflow:hidden;cursor:pointer;transition:border-color 0.3s,transform 0.3s;position:relative;}
-.project-card:hover{border-color:rgba(200,169,110,0.45);transform:translateY(-4px);}
-.project-card.featured{grid-column:1 / -1;display:grid;grid-template-columns:1.15fr 1fr;}
+.project-card{background:var(--card);border:1px solid var(--border);overflow:hidden;cursor:pointer;transition:border-color 0.3s,transform 0.3s;position:relative;backdrop-filter:blur(6px);}
+.project-card:hover{border-color:rgba(200,169,110,0.45);transform:translateY(-5px);}
+.project-card.featured{grid-column:1 / -1;display:grid;grid-template-columns:420px 1fr;}
 
-.project-img{overflow:hidden;position:relative;background:var(--surface2);}
-.project-card:not(.featured) .project-img{aspect-ratio:16/9;}
-.project-card.featured .project-img{min-height:380px;}
+/* project image — single, no scaling */
+.project-img{overflow:hidden;position:relative;background:rgba(12,14,22,0.9);}
+.project-card:not(.featured) .project-img{height:200px;}
+.project-card.featured .project-img{height:100%;}
 
-/* 3-panel screenshot mosaic */
-.project-card:hover .project-img img{transform:scale(1.05);}
-.ss-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,11,15,0.55) 0%,transparent 55%);pointer-events:none;}
+.project-img img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+  display:block;
+  padding:12px;
+  background:rgba(10,12,18,0.95);
+}
+/* no hover scale — just a soft border highlight */
+.project-card:hover .project-img{border-right:1px solid rgba(200,169,110,0.2);}
+.project-img-overlay{position:absolute;inset:0;pointer-events:none;}
 
-.project-info{padding:1.75rem;}
+.project-info{padding:2rem;}
 .project-card.featured .project-info{display:flex;flex-direction:column;justify-content:center;padding:2.5rem;}
 .project-engine{display:flex;gap:0.5rem;margin-bottom:1rem;flex-wrap:wrap;}
 .engine-badge{font-family:var(--font-m);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.25rem 0.65rem;border-radius:2px;}
@@ -113,17 +164,19 @@ section{padding:6rem 3rem;position:relative;z-index:1;}
 .project-card.featured .project-title{font-size:2.4rem;}
 .project-desc{font-size:0.9rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem;}
 .project-tech{display:flex;flex-wrap:wrap;gap:0.5rem;}
-.tech-pill{font-family:var(--font-m);font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.2rem 0.6rem;background:var(--surface2);border:1px solid var(--border);color:var(--muted);border-radius:1px;}
+.tech-pill{font-family:var(--font-m);font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.2rem 0.6rem;background:rgba(22,25,36,0.8);border:1px solid var(--border);color:var(--muted);border-radius:1px;}
 .project-arrow{position:absolute;top:1.5rem;right:1.5rem;width:32px;height:32px;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.8rem;transition:all 0.2s;opacity:0;}
 .project-card:hover .project-arrow{opacity:1;border-color:var(--accent);color:var(--accent);}
 
-.solar-wrap{width:100%;height:100%;position:relative;background:radial-gradient(ellipse at 38% 50%,#071a3a 0%,#050810 70%);}
+/* solar art card */
+.solar-wrap{width:100%;height:200px;position:relative;background:radial-gradient(ellipse at 38% 50%,rgba(7,26,58,0.9) 0%,rgba(5,8,16,0.95) 70%);}
 
-.modal-overlay{position:fixed;inset:0;background:rgba(10,11,15,0.94);z-index:1000;display:flex;align-items:center;justify-content:center;padding:2rem;opacity:0;pointer-events:none;transition:opacity 0.3s;backdrop-filter:blur(12px);}
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(10,11,15,0.94);z-index:1000;display:flex;align-items:center;justify-content:center;padding:2rem;opacity:0;pointer-events:none;transition:opacity 0.3s;backdrop-filter:blur(14px);}
 .modal-overlay.active{opacity:1;pointer-events:all;}
-.modal{background:var(--surface);border:1px solid var(--border2);max-width:780px;width:100%;max-height:88vh;overflow-y:auto;position:relative;transform:translateY(20px);transition:transform 0.3s;}
+.modal{background:rgba(18,20,30,0.97);border:1px solid var(--border2);max-width:780px;width:100%;max-height:88vh;overflow-y:auto;position:relative;transform:translateY(20px);transition:transform 0.3s;}
 .modal-overlay.active .modal{transform:translateY(0);}
-.modal-header-img{width:100%;height:260px;object-fit:cover;display:block;}
+.modal-header-img{width:100%;height:200px;object-fit:contain;object-position:center;display:block;background:rgba(10,12,18,0.98);padding:16px;}
 .modal-body{padding:2.5rem;}
 .modal-engine-row{display:flex;gap:0.5rem;margin-bottom:1rem;}
 .modal-title{font-family:var(--font-d);font-size:2.2rem;letter-spacing:0.04em;color:var(--text);margin-bottom:0.75rem;}
@@ -134,30 +187,39 @@ section{padding:6rem 3rem;position:relative;z-index:1;}
 .modal-feature{display:flex;gap:0.6rem;align-items:flex-start;font-size:0.85rem;color:var(--muted);}
 .modal-feature::before{content:'▸';color:var(--accent);flex-shrink:0;margin-top:1px;}
 .modal-tech-row{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2rem;}
-.modal-close{position:absolute;top:1rem;right:1rem;width:36px;height:36px;background:rgba(10,11,15,0.7);border:1px solid var(--border2);color:var(--text);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;z-index:10;}
-.modal-close:hover{background:var(--surface2);border-color:var(--accent);}
+.modal-close{position:absolute;top:1rem;right:1rem;width:36px;height:36px;background:rgba(10,11,15,0.8);border:1px solid var(--border2);color:var(--text);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;z-index:10;}
+.modal-close:hover{border-color:var(--accent);color:var(--accent);}
 .modal-screenshots{display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;margin-bottom:2rem;}
-.modal-screenshots img{width:100%;aspect-ratio:9/16;object-fit:cover;border:1px solid var(--border);display:block;cursor:pointer;transition:opacity 0.2s,transform 0.2s;}
-.modal-screenshots img:hover{opacity:0.8;transform:scale(1.03);}
+.modal-screenshots img{width:100%;aspect-ratio:9/16;object-fit:cover;border:1px solid var(--border);display:block;cursor:pointer;transition:opacity 0.2s,border-color 0.2s;}
+.modal-screenshots img:hover{opacity:0.85;border-color:var(--accent);}
 
-#contact{background:rgba(10,11,15,0.9);text-align:center;}
+/* CONTACT */
 .contact-inner{max-width:680px;margin:0 auto;}
 .contact-eyebrow{font-family:var(--font-m);font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;}
 .contact-heading{font-family:var(--font-d);font-size:clamp(2.5rem,6vw,5rem);letter-spacing:0.03em;color:var(--text);line-height:1.05;margin-bottom:1.5rem;}
 .contact-sub{font-size:1rem;color:var(--muted);margin-bottom:3rem;line-height:1.7;}
 .contact-links{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;}
-.contact-link{display:flex;align-items:center;gap:0.6rem;font-family:var(--font-m);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:0.85rem 1.5rem;border:1px solid var(--border2);transition:all 0.2s;}
-.contact-link:hover{color:var(--accent);border-color:rgba(200,169,110,0.4);background:rgba(200,169,110,0.04);}
+.contact-link{display:flex;align-items:center;gap:0.6rem;font-family:var(--font-m);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:0.85rem 1.5rem;border:1px solid var(--border2);background:rgba(16,18,26,0.6);backdrop-filter:blur(8px);transition:all 0.2s;}
+.contact-link:hover{color:var(--accent);border-color:rgba(200,169,110,0.4);background:rgba(200,169,110,0.05);}
 
-footer{padding:2rem 3rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:rgba(15,17,23,0.96);position:relative;z-index:1;}
+/* FOOTER */
+footer{
+  padding:2rem 3rem;
+  border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(10,11,15,0.85);
+  backdrop-filter:blur(20px);
+}
 footer p{font-family:var(--font-m);font-size:0.65rem;letter-spacing:0.1em;color:var(--muted);}
 footer a{color:var(--accent);text-decoration:none;}
 
+/* FADE IN */
 .fade-in{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
 .fade-in.visible{opacity:1;transform:translateY(0);}
 .fade-in:nth-child(2){transition-delay:0.1s;}
 .fade-in:nth-child(3){transition-delay:0.2s;}
 
+/* LIGHTBOX */
 .lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:2000;display:flex;align-items:center;justify-content:center;padding:2rem;opacity:0;pointer-events:none;transition:opacity 0.2s;}
 .lightbox.active{opacity:1;pointer-events:all;}
 .lightbox img{max-height:90vh;max-width:90vw;object-fit:contain;border:1px solid var(--border2);}
@@ -173,7 +235,6 @@ footer a{color:var(--accent);text-decoration:none;}
   .skills-grid{grid-template-columns:1fr 1fr;}
   .projects-grid{grid-template-columns:1fr;}
   .project-card.featured{grid-template-columns:1fr;}
-  .project-card.featured .project-img{min-height:260px;}
   footer{flex-direction:column;gap:0.5rem;text-align:center;}
   .hero-scroll{display:none;}
   .modal-screenshots{grid-template-columns:repeat(2,1fr);}
@@ -188,7 +249,6 @@ footer a{color:var(--accent);text-decoration:none;}
 
 <canvas id="bg-canvas"></canvas>
 
-<!-- NAV -->
 <nav>
   <a href="#hero" class="nav-logo">DY</a>
   <ul class="nav-links">
@@ -199,7 +259,6 @@ footer a{color:var(--accent);text-decoration:none;}
   </ul>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-content">
     <div class="hero-label">Portfolio — Game Developer</div>
@@ -224,7 +283,6 @@ footer a{color:var(--accent);text-decoration:none;}
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="section-header fade-in">
     <span class="section-num">01</span>
@@ -246,7 +304,6 @@ footer a{color:var(--accent);text-decoration:none;}
   </div>
 </section>
 
-<!-- SKILLS -->
 <section id="skills">
   <div class="section-header fade-in">
     <span class="section-num">02</span>
@@ -281,7 +338,6 @@ footer a{color:var(--accent);text-decoration:none;}
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
   <div class="section-header fade-in">
     <span class="section-num">03</span>
@@ -290,11 +346,10 @@ footer a{color:var(--accent);text-decoration:none;}
   </div>
   <div class="projects-grid">
 
-    <!-- FEATURED: Mirror Reflection -->
     <div class="project-card featured fade-in" onclick="openModal('mirror')">
       <div class="project-img">
-        <img src="ss3.png" alt="Mirror Reflection gameplay" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform 0.6s ease;">
-        <div class="ss-overlay"></div>
+        <img src="ss3.png" alt="Mirror Reflection gameplay" onerror="this.style.display='none'">
+        <div class="project-img-overlay"></div>
       </div>
       <div class="project-info">
         <div class="project-engine">
@@ -317,33 +372,30 @@ footer a{color:var(--accent);text-decoration:none;}
       <div class="project-arrow">↗</div>
     </div>
 
-    <!-- Solar System -->
     <div class="project-card fade-in" onclick="openModal('solar')">
       <div class="project-img solar-wrap">
-        <svg viewBox="0 0 400 225" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;display:block;">
-          <defs><radialGradient id="sg" cx="35%" cy="50%"><stop offset="0%" stop-color="#ffe066"/><stop offset="55%" stop-color="#f5a200"/><stop offset="100%" stop-color="#c85000" stop-opacity="0"/></radialGradient></defs>
+        <svg viewBox="0 0 400 200" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;display:block;">
+          <defs><radialGradient id="sg" cx="32%" cy="50%"><stop offset="0%" stop-color="#ffe066"/><stop offset="55%" stop-color="#f5a200"/><stop offset="100%" stop-color="#c85000" stop-opacity="0"/></radialGradient></defs>
           <circle cx="12" cy="18" r="0.9" fill="white" opacity="0.5"/><circle cx="58" cy="42" r="0.6" fill="white" opacity="0.4"/>
           <circle cx="200" cy="22" r="1" fill="white" opacity="0.6"/><circle cx="340" cy="58" r="0.7" fill="white" opacity="0.5"/>
-          <circle cx="378" cy="12" r="0.9" fill="white" opacity="0.4"/><circle cx="88" cy="192" r="0.7" fill="white" opacity="0.3"/>
-          <circle cx="308" cy="196" r="0.8" fill="white" opacity="0.5"/><circle cx="148" cy="212" r="0.5" fill="white" opacity="0.4"/>
-          <circle cx="260" cy="72" r="0.6" fill="white" opacity="0.35"/><circle cx="22" cy="168" r="0.8" fill="white" opacity="0.4"/>
-          <circle cx="185" cy="145" r="0.5" fill="white" opacity="0.3"/><circle cx="320" cy="130" r="0.7" fill="white" opacity="0.3"/>
-          <ellipse cx="90" cy="112" rx="55" ry="7" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
-          <ellipse cx="90" cy="112" rx="84" ry="11" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
-          <ellipse cx="90" cy="112" rx="115" ry="16" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/>
-          <ellipse cx="90" cy="112" rx="150" ry="21" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.8"/>
-          <circle cx="90" cy="112" r="22" fill="url(#sg)"/>
-          <circle cx="145" cy="112" r="5" fill="#4a9eff"/>
-          <circle cx="174" cy="112" r="7.5" fill="#e87a3a"/>
-          <circle cx="205" cy="112" r="9" fill="#d4a935"/>
-          <ellipse cx="240" cy="112" rx="14" ry="3" fill="none" stroke="#b89040" stroke-width="1.8" opacity="0.7"/>
-          <circle cx="240" cy="112" r="8.5" fill="#c8a050"/>
+          <circle cx="378" cy="12" r="0.9" fill="white" opacity="0.4"/><circle cx="88" cy="185" r="0.7" fill="white" opacity="0.3"/>
+          <circle cx="308" cy="188" r="0.8" fill="white" opacity="0.5"/><circle cx="260" cy="72" r="0.6" fill="white" opacity="0.35"/>
+          <ellipse cx="80" cy="100" rx="50" ry="7" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+          <ellipse cx="80" cy="100" rx="78" ry="11" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+          <ellipse cx="80" cy="100" rx="108" ry="15" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/>
+          <ellipse cx="80" cy="100" rx="145" ry="20" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.8"/>
+          <circle cx="80" cy="100" r="20" fill="url(#sg)"/>
+          <circle cx="130" cy="100" r="4.5" fill="#4a9eff"/>
+          <circle cx="158" cy="100" r="7" fill="#e87a3a"/>
+          <circle cx="188" cy="100" r="8.5" fill="#d4a935"/>
+          <ellipse cx="225" cy="100" rx="13" ry="3" fill="none" stroke="#b89040" stroke-width="1.8" opacity="0.7"/>
+          <circle cx="225" cy="100" r="8" fill="#c8a050"/>
         </svg>
       </div>
       <div class="project-info">
         <div class="project-engine"><span class="engine-badge ue">Unreal Engine 5</span></div>
         <h3 class="project-title">SOLAR SYSTEM SIM</h3>
-        <p class="project-desc">NASA-accurate planetary simulation in UE5 Blueprints. Real orbital mechanics, scaled distances, and an interactive free-fly exploration camera.</p>
+        <p class="project-desc">NASA-accurate planetary simulation in UE5 Blueprints. Real orbital mechanics, scaled distances, and interactive free-fly camera.</p>
         <div class="project-tech">
           <span class="tech-pill">Blueprint</span><span class="tech-pill">UE5</span><span class="tech-pill">Simulation</span><span class="tech-pill">NASA Data</span>
         </div>
@@ -354,7 +406,6 @@ footer a{color:var(--accent);text-decoration:none;}
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="contact-inner">
     <p class="contact-eyebrow fade-in">Let's build something</p>
@@ -378,7 +429,6 @@ footer a{color:var(--accent);text-decoration:none;}
   <p>Built with <a href="https://pages.github.com" target="_blank">GitHub Pages</a> · <a href="https://github.com/Aayush-jangir" target="_blank">github.com/Aayush-jangir</a></p>
 </footer>
 
-<!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
   <div class="modal">
     <button class="modal-close" onclick="closeModalDirect()">✕</button>
@@ -386,208 +436,245 @@ footer a{color:var(--accent);text-decoration:none;}
   </div>
 </div>
 
-<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()">✕</button>
   <img id="lightbox-img" src="" alt="">
 </div>
 
 <script>
-/* ═══════════════════════════════════════
-   LIVE PARTICLE + GRID BACKGROUND
-   Nodes float & connect with lines.
-   Mouse cursor repels nearby particles.
-   A slow scan-line sweeps the screen.
-   Gold nodes pulse. Blue nodes twinkle.
-═══════════════════════════════════════ */
+/* ═══════════════════════════════════════════
+   DYNAMIC BACKGROUND — canvas always on z:0,
+   visible through every translucent section.
+
+   Features:
+   - Floating gold + blue particle nodes
+   - Connection lines between nearby particles
+   - Mouse ATTRACTS particles (pull, not push)
+   - Click sends a ripple shockwave
+   - Nodes near cursor glow brighter
+   - Slow scan line sweep
+   - Occasional "shooting" fast particle
+═══════════════════════════════════════════ */
 (function(){
   const cv = document.getElementById('bg-canvas');
   const cx = cv.getContext('2d');
-  let W, H;
-  let pts = [];
-  const mouse = {x:-9999, y:-9999};
-  const N = 85;
+  let W, H, pts=[], ripples=[];
+  const mouse={x:-9999,y:-9999};
+  const N=100;
 
-  function resize(){
-    W = cv.width = window.innerWidth;
-    H = cv.height = window.innerHeight;
-  }
+  function resize(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;}
 
-  function rnd(a,b){ return Math.random()*(b-a)+a; }
+  function rnd(a,b){return Math.random()*(b-a)+a;}
 
-  function mkPt(){
-    const isNode = Math.random() > 0.78;
-    const isBlue = Math.random() > 0.65;
-    return {
-      x: rnd(0, W),
-      y: rnd(0, H),
-      vx: rnd(-0.15, 0.15),
-      vy: rnd(-0.12, 0.12),
-      r: isNode ? rnd(2.8, 4.8) : rnd(0.9, 1.8),
-      isNode,
-      isBlue,
-      phase: rnd(0, Math.PI*2),
-      spd: rnd(0.009, 0.025),
-      baseAlpha: rnd(0.18, 0.52)
+  function mkPt(fast){
+    const isNode=Math.random()>0.75;
+    const isBlue=Math.random()>0.6;
+    const angle=rnd(0,Math.PI*2);
+    const spd=fast?rnd(1.5,3.5):rnd(0.08,0.22);
+    return{
+      x:rnd(0,W),y:rnd(0,H),
+      vx:Math.cos(angle)*spd,
+      vy:Math.sin(angle)*spd,
+      r:isNode?rnd(2.5,4.5):rnd(0.8,1.8),
+      isNode,isBlue,
+      phase:rnd(0,Math.PI*2),
+      pulseSpd:rnd(0.01,0.028),
+      baseAlpha:rnd(0.18,0.55),
+      fast:!!fast,
+      life:fast?1:null
     };
   }
 
-  function init(){
-    resize();
-    pts = Array.from({length:N}, mkPt);
-  }
+  function init(){resize();pts=Array.from({length:N},()=>mkPt(false));}
 
-  let scanY = 0;
+  // Spawn a shooting particle every 4s
+  setInterval(()=>{
+    const p=mkPt(true);
+    p.x=Math.random()<0.5?-10:W+10;
+    p.y=rnd(H*0.1,H*0.9);
+    p.vx=p.x<0?rnd(2.5,4):rnd(-4,-2.5);
+    p.vy=rnd(-0.8,0.8);
+    pts.push(p);
+  },4000);
 
-  function frame(ts){
-    cx.clearRect(0, 0, W, H);
+  let scanY=0;
 
-    // update positions
-    for(const p of pts){
-      p.phase += p.spd;
+  function frame(){
+    cx.clearRect(0,0,W,H);
 
-      // mouse repel
-      const dx = p.x - mouse.x;
-      const dy = p.y - mouse.y;
-      const d2 = dx*dx + dy*dy;
-      if(d2 < 14400){ // 120px^2
-        const d = Math.sqrt(d2);
-        const f = (120 - d) / 120 * 0.45;
-        p.vx += (dx/d) * f;
-        p.vy += (dy/d) * f;
+    // update particles
+    for(let i=pts.length-1;i>=0;i--){
+      const p=pts[i];
+      p.phase+=p.pulseSpd;
+
+      if(!p.fast){
+        // attraction toward mouse
+        const dx=mouse.x-p.x, dy=mouse.y-p.y;
+        const d2=dx*dx+dy*dy;
+        if(d2<90000&&d2>100){ // 300px radius, avoid divide-by-zero
+          const d=Math.sqrt(d2);
+          const f=(300-d)/300*0.012;
+          p.vx+=dx/d*f;
+          p.vy+=dy/d*f;
+        }
+        // speed cap + dampen
+        const spd=Math.sqrt(p.vx*p.vx+p.vy*p.vy);
+        if(spd>0.9){p.vx*=0.96;p.vy*=0.96;}
+        p.vx*=0.9998;p.vy*=0.9998;
+        // wrap
+        if(p.x<-8)p.x=W+8;else if(p.x>W+8)p.x=-8;
+        if(p.y<-8)p.y=H+8;else if(p.y>H+8)p.y=-8;
+      } else {
+        // shooting star — fade out
+        p.life-=0.008;
+        if(p.life<=0||p.x<-20||p.x>W+20){pts.splice(i,1);continue;}
       }
-
-      // soft speed cap
-      const spd = Math.sqrt(p.vx*p.vx + p.vy*p.vy);
-      if(spd > 1.2){ p.vx *= 0.96; p.vy *= 0.96; }
-
-      p.vx *= 0.9995;
-      p.vy *= 0.9995;
-      p.x += p.vx;
-      p.y += p.vy;
-
-      // wrap edges
-      if(p.x < -8) p.x = W+8;
-      else if(p.x > W+8) p.x = -8;
-      if(p.y < -8) p.y = H+8;
-      else if(p.y > H+8) p.y = -8;
+      p.x+=p.vx;p.y+=p.vy;
     }
 
-    // draw connections
-    cx.lineWidth = 0.5;
-    for(let i=0; i<pts.length; i++){
-      for(let j=i+1; j<pts.length; j++){
-        const a = pts[i], b = pts[j];
-        const dx = a.x-b.x, dy = a.y-b.y;
-        const d = Math.sqrt(dx*dx + dy*dy);
-        if(d < 135){
-          const alpha = (1 - d/135) * 0.11;
+    // update ripples
+    for(let i=ripples.length-1;i>=0;i--){
+      const r=ripples[i];
+      r.radius+=4;r.alpha-=0.018;
+      if(r.alpha<=0)ripples.splice(i,1);
+    }
+
+    // draw ripples
+    for(const r of ripples){
+      cx.beginPath();
+      cx.arc(r.x,r.y,r.radius,0,Math.PI*2);
+      cx.strokeStyle=`rgba(200,169,110,${r.alpha})`;
+      cx.lineWidth=1;
+      cx.stroke();
+    }
+
+    // draw connections (only non-fast)
+    const statics=pts.filter(p=>!p.fast);
+    cx.lineWidth=0.5;
+    for(let i=0;i<statics.length;i++){
+      for(let j=i+1;j<statics.length;j++){
+        const a=statics[i],b=statics[j];
+        const dx=a.x-b.x,dy=a.y-b.y;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        if(d<140){
+          const alpha=(1-d/140)*0.13;
           cx.beginPath();
-          cx.strokeStyle = `rgba(200,169,110,${alpha})`;
-          cx.moveTo(a.x, a.y);
-          cx.lineTo(b.x, b.y);
-          cx.stroke();
+          cx.strokeStyle=`rgba(200,169,110,${alpha})`;
+          cx.moveTo(a.x,a.y);cx.lineTo(b.x,b.y);cx.stroke();
         }
       }
     }
 
-    // draw points
+    // draw particles
     for(const p of pts){
-      const pulse = Math.sin(p.phase);
-      const a = p.baseAlpha * (0.7 + 0.3*pulse);
+      const pulse=Math.sin(p.phase);
+
+      // proximity glow near mouse
+      const mdx=p.x-mouse.x,mdy=p.y-mouse.y;
+      const mdist=Math.sqrt(mdx*mdx+mdy*mdy);
+      const glowBoost=mdist<150?((150-mdist)/150)*0.4:0;
+
+      const a=p.fast
+        ?(p.life*0.7)
+        :(p.baseAlpha+glowBoost)*(0.65+0.35*pulse);
+
+      if(p.fast){
+        // shooting star trail
+        cx.beginPath();
+        cx.moveTo(p.x,p.y);
+        cx.lineTo(p.x-p.vx*12,p.y-p.vy*12);
+        cx.strokeStyle=`rgba(200,169,110,${a*0.6})`;
+        cx.lineWidth=1.5;cx.stroke();
+        cx.beginPath();
+        cx.arc(p.x,p.y,2,0,Math.PI*2);
+        cx.fillStyle=`rgba(232,201,138,${a})`;
+        cx.fill();
+        continue;
+      }
 
       if(p.isNode){
-        // ring
+        if(glowBoost>0.05){
+          cx.beginPath();
+          cx.arc(p.x,p.y,p.r+4+pulse*2+glowBoost*6,0,Math.PI*2);
+          cx.strokeStyle=p.isBlue?`rgba(0,133,202,${a*0.25})`:`rgba(200,169,110,${a*0.25})`;
+          cx.lineWidth=0.6;cx.stroke();
+        }
         cx.beginPath();
-        cx.arc(p.x, p.y, p.r + 2.5 + pulse*1.8, 0, Math.PI*2);
-        cx.strokeStyle = p.isBlue
-          ? `rgba(0,133,202,${a*0.35})`
-          : `rgba(200,169,110,${a*0.35})`;
-        cx.lineWidth = 0.7;
-        cx.stroke();
-        // core
+        cx.arc(p.x,p.y,p.r+1.5+pulse*1.5,0,Math.PI*2);
+        cx.strokeStyle=p.isBlue?`rgba(0,133,202,${a*0.35})`:`rgba(200,169,110,${a*0.35})`;
+        cx.lineWidth=0.7;cx.stroke();
         cx.beginPath();
-        cx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-        cx.fillStyle = p.isBlue
-          ? `rgba(0,133,202,${a})`
-          : `rgba(200,169,110,${a})`;
+        cx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        cx.fillStyle=p.isBlue?`rgba(0,133,202,${a})`:`rgba(200,169,110,${a})`;
         cx.fill();
       } else {
         cx.beginPath();
-        cx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-        cx.fillStyle = p.isBlue
-          ? `rgba(60,160,220,${a*0.8})`
-          : `rgba(200,169,110,${a*0.8})`;
+        cx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        cx.fillStyle=p.isBlue?`rgba(60,160,220,${a*0.8})`:`rgba(200,169,110,${a*0.8})`;
         cx.fill();
       }
     }
 
-    // moving scan line
-    scanY = (scanY + 0.4) % H;
-    const g = cx.createLinearGradient(0, scanY-50, 0, scanY+50);
-    g.addColorStop(0, 'rgba(200,169,110,0)');
-    g.addColorStop(0.5, 'rgba(200,169,110,0.025)');
-    g.addColorStop(1, 'rgba(200,169,110,0)');
-    cx.fillStyle = g;
-    cx.fillRect(0, scanY-50, W, 100);
+    // scan line
+    scanY=(scanY+0.35)%H;
+    const g=cx.createLinearGradient(0,scanY-60,0,scanY+60);
+    g.addColorStop(0,'rgba(200,169,110,0)');
+    g.addColorStop(0.5,'rgba(200,169,110,0.022)');
+    g.addColorStop(1,'rgba(200,169,110,0)');
+    cx.fillStyle=g;cx.fillRect(0,scanY-60,W,120);
 
     requestAnimationFrame(frame);
   }
 
-  window.addEventListener('resize', resize);
-  window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
-  window.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+  window.addEventListener('resize',resize);
+  window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
+  window.addEventListener('mouseleave',()=>{mouse.x=-9999;mouse.y=-9999;});
+  window.addEventListener('click',e=>{
+    if(e.target.tagName==='A'||e.target.tagName==='BUTTON') return;
+    ripples.push({x:e.clientX,y:e.clientY,radius:0,alpha:0.5});
+  });
 
-  init();
-  requestAnimationFrame(frame);
+  init();requestAnimationFrame(frame);
 })();
 
-/* ═══════════════════════════════════════
+/* ═══════════════════════════════════════════
    MODAL SYSTEM
-═══════════════════════════════════════ */
-const PROJECTS = {
-  mirror: {
-    title:'MIRROR REFLECTION', subtitle:'Unity 2D · Light Puzzle Prototype',
-    engine:'unity', engineLabel:'Unity 2D', genre:'Puzzle',
+═══════════════════════════════════════════ */
+const PROJECTS={
+  mirror:{
+    title:'MIRROR REFLECTION',subtitle:'Unity 2D · Light Puzzle Prototype',
+    engine:'unity',engineLabel:'Unity 2D',genre:'Puzzle',
     headerImg:'ss3.png',
-    desc:'Mirror Reflection is a 2D light-puzzle game where the player fires a beam from a source and must guide it through a network of mirrors to hit the target. The game features 20+ handcrafted levels with escalating difficulty, multiple mirror types, obstacles that block or absorb light, a countdown timer, and a full level-select menu. Built entirely from scratch in Unity with zero prior Unity experience.',
+    desc:'Mirror Reflection is a 2D light-puzzle game where the player fires a beam from a source and guides it through mirrors to hit the target. 20+ handcrafted levels with escalating difficulty, multiple mirror types, obstacles that block light, countdown timers, and a full level-select menu. Built from scratch in Unity with zero prior Unity experience.',
     features:['20+ handcrafted puzzle levels','Multiple mirror types & angles','Countdown timer per level','Level complete / fail states','Full menu & level select UI','Reset & retry system','Obstacle & blocker objects','3 attempts per level system'],
     tech:['C#','Unity 2D','Physics2D','Raycasting','LineRenderer','SceneManagement','UI Toolkit'],
     screenshots:['ss4.png','ss3.png','ss2.png','ss1.png']
   },
-  solar: {
-    title:'SOLAR SYSTEM SIMULATION', subtitle:'Unreal Engine 5 · Blueprints',
-    engine:'ue', engineLabel:'Unreal Engine 5', genre:'Simulation',
+  solar:{
+    title:'SOLAR SYSTEM SIMULATION',subtitle:'Unreal Engine 5 · Blueprints',
+    engine:'ue',engineLabel:'Unreal Engine 5',genre:'Simulation',
     headerImg:null,
-    desc:'An interactive Solar System simulation built in Unreal Engine 5 using 100% Blueprint visual scripting. Planetary bodies are scaled using NASA-accurate data with real relative distances, orbital velocities, and rotational periods. The free-fly camera system allows exploration through the solar system.',
-    features:['NASA-accurate planetary data','Real orbital mechanics','Free-fly exploration camera','Scaled planetary sizes','Orbital period simulation','Blueprint-only (no C++)','Dynamic space lighting','Planet information system'],
+    desc:'An interactive Solar System simulation built in UE5 using 100% Blueprint scripting. Planetary bodies scaled with NASA-accurate data, real orbital mechanics, and a free-fly exploration camera.',
+    features:['NASA-accurate planetary data','Real orbital mechanics','Free-fly exploration camera','Scaled planetary sizes','Orbital period simulation','Blueprint-only (no C++)','Dynamic space lighting','Planet info system'],
     tech:['Blueprint','UE5','Simulation','Orbital Mechanics','Actor Components','NASA Data'],
     screenshots:[]
   }
 };
 
 function openModal(id){
-  const p = PROJECTS[id];
-  if(!p) return;
-  const bc = p.engine==='unity'?'unity':'ue';
-
-  const headerHTML = p.headerImg
-    ? `<img src="${p.headerImg}" class="modal-header-img" alt="${p.title}" onerror="this.style.display='none'">`
-    : `<div style="height:130px;background:var(--surface2);display:flex;align-items:center;justify-content:center;"><span style="font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--border2);">${p.genre.toUpperCase()}</span></div>`;
-
-  const ssHTML = p.screenshots.length ? `
+  const p=PROJECTS[id];if(!p)return;
+  const bc=p.engine==='unity'?'unity':'ue';
+  const hdr=p.headerImg
+    ?`<img src="${p.headerImg}" class="modal-header-img" alt="${p.title}" onerror="this.style.display='none'">`
+    :`<div style="height:120px;background:rgba(18,20,30,0.98);display:flex;align-items:center;justify-content:center;"><span style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:rgba(255,255,255,0.1);">${p.genre.toUpperCase()}</span></div>`;
+  const ss=p.screenshots.length?`
     <p class="modal-section-label">Screenshots</p>
     <div class="modal-screenshots">
       ${p.screenshots.map(s=>`<img src="${s}" alt="" loading="lazy" onclick="openLightbox('${s}')">`).join('')}
-    </div>` : '';
-
-  document.getElementById('modal-inner').innerHTML = `
-    ${headerHTML}
+    </div>`:'';
+  document.getElementById('modal-inner').innerHTML=`${hdr}
     <div class="modal-body">
-      <div class="modal-engine-row">
-        <span class="engine-badge ${bc}">${p.engineLabel}</span>
-        <span class="engine-badge prototype">${p.genre}</span>
-      </div>
+      <div class="modal-engine-row"><span class="engine-badge ${bc}">${p.engineLabel}</span><span class="engine-badge prototype">${p.genre}</span></div>
       <h2 class="modal-title">${p.title}</h2>
       <p class="modal-subtitle">${p.subtitle}</p>
       <p class="modal-desc">${p.desc}</p>
@@ -595,48 +682,21 @@ function openModal(id){
       <div class="modal-features">${p.features.map(f=>`<div class="modal-feature">${f}</div>`).join('')}</div>
       <p class="modal-section-label">Tech Stack</p>
       <div class="modal-tech-row">${p.tech.map(t=>`<span class="tech-pill">${t}</span>`).join('')}</div>
-      ${ssHTML}
+      ${ss}
     </div>`;
-
   document.getElementById('modal-overlay').classList.add('active');
   document.body.style.overflow='hidden';
 }
+function closeModal(e){if(e.target===document.getElementById('modal-overlay'))closeModalDirect();}
+function closeModalDirect(){document.getElementById('modal-overlay').classList.remove('active');document.body.style.overflow='';}
+function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('active');}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModalDirect();closeLightbox();}});
 
-function closeModal(e){
-  if(e.target===document.getElementById('modal-overlay')) closeModalDirect();
-}
-function closeModalDirect(){
-  document.getElementById('modal-overlay').classList.remove('active');
-  document.body.style.overflow='';
-}
-function openLightbox(src){
-  document.getElementById('lightbox-img').src=src;
-  document.getElementById('lightbox').classList.add('active');
-}
-function closeLightbox(){
-  document.getElementById('lightbox').classList.remove('active');
-}
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){ closeModalDirect(); closeLightbox(); }
-});
-
-/* ── FADE IN ── */
-const ob = new IntersectionObserver(entries=>{
-  entries.forEach(el=>{ if(el.isIntersecting){ el.target.classList.add('visible'); ob.unobserve(el.target); } });
-},{threshold:0.1});
+const ob=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');ob.unobserve(el.target);}});},{threshold:0.1});
 document.querySelectorAll('.fade-in').forEach(el=>ob.observe(el));
 
-/* ── SKILL BARS ── */
-const sb = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.querySelectorAll('.skill-bar').forEach(b=>{
-        setTimeout(()=>{ b.style.width=b.getAttribute('data-width')+'%'; }, 200);
-      });
-      sb.unobserve(e.target);
-    }
-  });
-},{threshold:0.3});
+const sb=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){en.target.querySelectorAll('.skill-bar').forEach(b=>{setTimeout(()=>{b.style.width=b.getAttribute('data-width')+'%';},200);});sb.unobserve(en.target);}});},{threshold:0.3});
 document.querySelectorAll('.skill-group').forEach(el=>sb.observe(el));
 </script>
 </body>
