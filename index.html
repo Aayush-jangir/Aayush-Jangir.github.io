@@ -42,7 +42,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 3rem;display:
 .nav-links a{font-family:var(--font-m);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;}
 .nav-links a:hover{color:var(--text);}
 
-/* All sections above canvas, translucent */
 nav,section,footer{position:relative;z-index:2;}
 
 /* HERO */
@@ -68,7 +67,6 @@ nav,section,footer{position:relative;z-index:2;}
 .btn-secondary{font-family:var(--font-m);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.85rem 2rem;background:rgba(16,14,26,0.5);backdrop-filter:blur(8px);color:var(--muted);border:1px solid var(--border2);cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.2s;}
 .btn-secondary:hover{color:var(--text);border-color:rgba(255,255,255,0.25);}
 
-/* purple play button variant */
 .btn-play{font-family:var(--font-m);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.7rem 1.4rem;background:var(--purple-dim);color:var(--purple2);border:1px solid rgba(155,109,255,0.4);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;transition:all 0.25s;border-radius:2px;}
 .btn-play:hover{background:rgba(155,109,255,0.22);border-color:var(--purple);color:#fff;transform:translateY(-1px);}
 .btn-play svg{width:12px;height:12px;fill:currentColor;flex-shrink:0;}
@@ -80,7 +78,6 @@ nav,section,footer{position:relative;z-index:2;}
 .scroll-text{font-family:var(--font-m);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);}
 .cursor-blink{display:inline-block;width:4px;height:0.85em;background:var(--accent);vertical-align:middle;animation:blink 1.2s infinite;margin-left:4px;}
 
-/* SECTIONS — translucent, canvas bleeds through */
 section{padding:6rem 3rem;}
 #about{background:rgba(10,9,18,0.72);backdrop-filter:blur(6px);}
 #skills{background:rgba(9,9,15,0.65);backdrop-filter:blur(4px);}
@@ -122,19 +119,10 @@ section{padding:6rem 3rem;}
 .project-card:hover{border-color:rgba(155,109,255,0.35);transform:translateY(-5px);box-shadow:0 20px 60px rgba(100,60,200,0.12);}
 .project-card.featured{grid-column:1 / -1;display:grid;grid-template-columns:380px 1fr;}
 
-/* image area — natural size, no crop or scale */
 .project-img{overflow:hidden;position:relative;background:rgba(9,8,16,0.97);display:flex;align-items:center;justify-content:center;}
 .project-card:not(.featured) .project-img{height:220px;}
 .project-card.featured .project-img{height:auto;min-height:360px;}
-.project-img img{
-  max-width:100%;
-  max-height:100%;
-  width:auto;
-  height:auto;
-  object-fit:contain;
-  display:block;
-  padding:16px;
-}
+.project-img img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;padding:16px;}
 .project-card.featured .project-img img{max-height:360px;padding:20px;}
 
 .project-info{padding:2rem;}
@@ -153,16 +141,19 @@ section{padding:6rem 3rem;}
 .project-tech{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.5rem;}
 .tech-pill{font-family:var(--font-m);font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.2rem 0.6rem;background:rgba(20,18,30,0.8);border:1px solid var(--border);color:var(--muted);border-radius:1px;}
 
-/* store buttons row on the card */
 .store-row{display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center;}
 
 .btn-itch{font-family:var(--font-m);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.65rem 1.2rem;background:rgba(239,91,29,0.1);color:#ff7043;border:1px solid rgba(239,91,29,0.35);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;transition:all 0.2s;border-radius:2px;}
 .btn-itch:hover{background:rgba(239,91,29,0.2);border-color:#ff7043;transform:translateY(-1px);}
 .btn-itch svg{width:13px;height:13px;fill:currentColor;flex-shrink:0;}
 
-.btn-gplay{font-family:var(--font-m);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.65rem 1.2rem;background:rgba(52,168,83,0.08);color:#34a853;border:1px solid rgba(52,168,83,0.3);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;transition:all 0.2s;border-radius:2px;opacity:0.6;cursor:not-allowed;}
+.btn-gplay{font-family:var(--font-m);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.65rem 1.2rem;background:rgba(52,168,83,0.08);color:#34a853;border:1px solid rgba(52,168,83,0.3);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;transition:all 0.2s;border-radius:2px;}
+.btn-gplay:hover{background:rgba(52,168,83,0.18);border-color:#34a853;transform:translateY(-1px);}
 .btn-gplay svg{width:13px;height:13px;fill:currentColor;flex-shrink:0;}
-.btn-gplay .gplay-soon{font-size:0.55rem;opacity:0.7;margin-left:0.1rem;}
+
+.btn-github{font-family:var(--font-m);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.65rem 1.2rem;background:rgba(255,255,255,0.04);color:var(--muted);border:1px solid var(--border2);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;transition:all 0.2s;border-radius:2px;}
+.btn-github:hover{background:rgba(255,255,255,0.08);color:var(--text);border-color:rgba(255,255,255,0.3);transform:translateY(-1px);}
+.btn-github svg{width:13px;height:13px;fill:currentColor;flex-shrink:0;}
 
 .btn-details{font-family:var(--font-m);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.65rem 1.2rem;background:transparent;color:var(--muted);border:1px solid var(--border2);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;transition:all 0.2s;border-radius:2px;}
 .btn-details:hover{color:var(--text);border-color:rgba(255,255,255,0.3);}
@@ -170,7 +161,6 @@ section{padding:6rem 3rem;}
 .project-arrow{position:absolute;top:1.2rem;right:1.2rem;width:28px;height:28px;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.75rem;transition:all 0.2s;opacity:0;}
 .project-card:hover .project-arrow{opacity:1;border-color:var(--accent);color:var(--accent);}
 
-/* solar art */
 .solar-wrap{width:100%;height:220px;position:relative;background:radial-gradient(ellipse at 35% 50%,rgba(7,20,50,0.95) 0%,rgba(5,5,12,0.98) 70%);display:flex;align-items:center;justify-content:center;}
 
 /* MODAL */
@@ -299,12 +289,12 @@ footer a{color:var(--accent);text-decoration:none;}
   <div class="about-grid">
     <div class="about-text fade-in">
       <p>I'm <strong>Detrear Yaeger</strong>, an <span class="highlight">indie game developer</span> with a deep passion for building compelling game experiences from the ground up. I hold a <strong>Bachelor of Technology</strong> and am currently completing an <strong>Advanced Diploma in Game Development</strong> specializing in both Unity and Unreal Engine.</p>
-      <p>My philosophy is simple: <strong>build first, polish second</strong>. I thrive in the prototyping phase — turning a design idea into a playable experience as fast as possible, then iterating relentlessly. I recently shipped my first full game, <span class="highlight">Mirror Reflection</span>, available on itch.io and launching on Google Play.</p>
+      <p>My philosophy is simple: <strong>build first, polish second</strong>. I thrive in the prototyping phase — turning a design idea into a playable experience as fast as possible, then iterating relentlessly. I shipped my first full game, <span class="highlight">Mirror Reflection</span>, on itch.io and Google Play, and I'm now actively building a portfolio of reusable Unity systems under <span class="highlight">Playmatrix Studio</span>.</p>
       <p>I'm equally at home in Unity's C# ecosystem and Unreal's Blueprint visual scripting, giving me the flexibility to choose the <span class="highlight">right tool for the right game</span>.</p>
     </div>
     <div class="about-stats fade-in">
       <div class="stat-card"><div class="stat-num">2+</div><div class="stat-label">Engines Mastered</div></div>
-      <div class="stat-card"><div class="stat-num">1</div><div class="stat-label">Game Published</div></div>
+      <div class="stat-card"><div class="stat-num">2</div><div class="stat-label">Projects Shipped</div></div>
       <div class="stat-card"><div class="stat-num">59+</div><div class="stat-label">Levels Designed</div></div>
       <div class="stat-card"><div class="stat-num">∞</div><div class="stat-label">Iterations Shipped</div></div>
     </div>
@@ -364,10 +354,10 @@ footer a{color:var(--accent);text-decoration:none;}
         <div class="project-engine">
           <span class="engine-badge unity">Unity</span>
           <span class="engine-badge released">Released</span>
-          <span class="engine-badge coming">Google Play — Apr 25</span>
+          <span class="engine-badge released">Google Play — Live ✓</span>
         </div>
         <h3 class="project-title">MIRROR REFLECTION</h3>
-        <p class="project-desc">A minimalist laser-reflection puzzle game with 59+ levels, a scoring system, star ratings, and a polished UI. Available now on itch.io and launching on Google Play Store on April 25, 2026.</p>
+        <p class="project-desc">A minimalist laser-reflection puzzle game with 59+ levels, a scoring system, star ratings, and a polished UI. Available now on itch.io and Google Play.</p>
         <div class="project-tech">
           <span class="tech-pill">C#</span>
           <span class="tech-pill">Unity</span>
@@ -381,14 +371,73 @@ footer a{color:var(--accent);text-decoration:none;}
             <svg viewBox="0 0 245 244"><path d="M31.99 243.61C14.2 232.4.8 202.7.8 202.7s11.3-53.1 13.7-60.3c8.5-25.7 27.1-31.2 27.1-31.2s46.4 5.7 80.4 5.7c34 0 80.5-5.7 80.5-5.7s18.6 5.5 27.1 31.2c2.4 7.2 13.7 60.3 13.7 60.3s-13.4 29.7-31.2 40.9c0 0-21.4-3.8-90.1-3.8s-90.1 3.8-90.1 3.8z"/><path d="M122.5 0C55.3 0 0 16.7 0 37.3v6.2c0 11.5 11.4 21.7 29.3 29.2 0 0 4.7-10.1 24.3-16.4 0 0-15.5 14.5-15.5 36.5 0 22.6 17.2 34 35.3 34 18.1 0 34.8-10.8 34.8-31.3 0-11-4.7-21.4-13.6-29.6 8.2-1.2 17.4-1.8 27.9-1.8 10.5 0 19.7.6 27.9 1.8-8.9 8.2-13.6 18.6-13.6 29.6 0 20.5 16.7 31.3 34.8 31.3 18.1 0 35.3-11.4 35.3-34 0-22-15.5-36.5-15.5-36.5 19.6 6.3 24.3 16.4 24.3 16.4 17.9-7.5 29.3-17.7 29.3-29.2v-6.2C245 16.7 189.7 0 122.5 0z"/></svg>
             Play on itch.io
           </a>
-          <span class="btn-gplay" title="Coming April 25, 2026">
+          <a href="https://play.google.com/store/apps/details?id=com.playmatrixstudio.mirrorreflection" target="_blank" rel="noopener" class="btn-gplay" onclick="event.stopPropagation()">
             <svg viewBox="0 0 24 24"><path d="M3.18 23.76c.35.2.74.24 1.12.12l12.2-7.04-2.61-2.62-10.71 9.54zM.49 1.6C.18 1.97 0 2.5 0 3.16v17.68c0 .66.18 1.19.49 1.56l.08.08 9.9-9.9v-.23L.57 2.45l-.08.15zM20.08 10.3l-2.68-1.55-2.92 2.92 2.92 2.92 2.7-1.56c.77-.45.77-1.18-.02-1.73zM4.3.12L16.5 7.16l-2.61 2.61L3.18.24C3.56.12 3.95.16 4.3.36z"/></svg>
             Google Play
-            <span class="gplay-soon">Apr 25</span>
-          </span>
+          </a>
           <button class="btn-details" onclick="openModal('mirror')">
             Details ↗
           </button>
+        </div>
+      </div>
+      <div class="project-arrow">↗</div>
+    </div>
+
+    <!-- 2D CHARACTER CONTROLLER -->
+    <div class="project-card fade-in" onclick="openModal('char2d')">
+      <div class="project-img" style="height:220px;position:relative;">
+        <svg viewBox="0 0 400 220" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;display:block;">
+          <defs>
+            <radialGradient id="bg2d" cx="50%" cy="50%"><stop offset="0%" stop-color="#1a0a2e"/><stop offset="100%" stop-color="#09090f"/></radialGradient>
+          </defs>
+          <rect width="400" height="220" fill="url(#bg2d)"/>
+          <rect x="0" y="170" width="400" height="10" fill="rgba(155,109,255,0.3)" rx="1"/>
+          <rect x="55" y="132" width="80" height="7" fill="rgba(155,109,255,0.22)" rx="1"/>
+          <rect x="240" y="102" width="80" height="7" fill="rgba(155,109,255,0.22)" rx="1"/>
+          <rect x="183" y="102" width="7" height="68" fill="rgba(155,109,255,0.18)" rx="1"/>
+          <rect x="91" y="110" width="16" height="22" fill="rgba(200,169,110,0.88)" rx="2"/>
+          <rect x="94" y="102" width="10" height="10" fill="rgba(200,169,110,0.88)" rx="2"/>
+          <path d="M 99 110 Q 148 58 258 94" fill="none" stroke="rgba(155,109,255,0.32)" stroke-width="1.5" stroke-dasharray="4,4"/>
+          <path d="M 258 94 L 308 94" fill="none" stroke="rgba(200,169,110,0.38)" stroke-width="1.5" stroke-dasharray="3,3"/>
+          <text x="99" y="99" font-family="monospace" font-size="6.5" fill="rgba(155,109,255,0.65)" text-anchor="middle">JUMP</text>
+          <text x="283" y="90" font-family="monospace" font-size="6" fill="rgba(200,169,110,0.6)" text-anchor="middle">DASH</text>
+          <circle cx="335" cy="38" r="20" fill="rgba(155,109,255,0.07)" stroke="rgba(155,109,255,0.28)" stroke-width="1"/>
+          <text x="335" y="42" font-family="monospace" font-size="6.5" fill="rgba(155,109,255,0.75)" text-anchor="middle">FSM</text>
+          <circle cx="368" cy="72" r="13" fill="rgba(200,169,110,0.05)" stroke="rgba(200,169,110,0.22)" stroke-width="1"/>
+          <text x="368" y="76" font-family="monospace" font-size="5.5" fill="rgba(200,169,110,0.65)" text-anchor="middle">IDLE</text>
+          <circle cx="365" cy="22" r="11" fill="rgba(74,222,128,0.05)" stroke="rgba(74,222,128,0.2)" stroke-width="1"/>
+          <text x="365" y="26" font-family="monospace" font-size="5" fill="rgba(74,222,128,0.6)" text-anchor="middle">WALL</text>
+          <line x1="349" y1="52" x2="357" y2="62" stroke="rgba(155,109,255,0.18)" stroke-width="0.8"/>
+          <line x1="349" y1="30" x2="356" y2="36" stroke="rgba(155,109,255,0.15)" stroke-width="0.8"/>
+        </svg>
+      </div>
+      <div class="project-info">
+        <div class="project-engine">
+          <span class="engine-badge unity">Unity 6.3 LTS</span>
+          <span class="engine-badge released">Tool / System</span>
+        </div>
+        <h3 class="project-title">2D CHARACTER CONTROLLER</h3>
+        <p class="project-desc">Production-ready plug-in-ready 2D platformer controller. 10-state FSM, coyote time, jump buffering, dash, wall slide &amp; wall jump, mobile touch input, and full Animator Blend Tree. Drop into any Unity project.</p>
+        <div class="project-tech">
+          <span class="tech-pill">C#</span>
+          <span class="tech-pill">Unity 6.3</span>
+          <span class="tech-pill">FSM</span>
+          <span class="tech-pill">Input System</span>
+          <span class="tech-pill">Cinemachine</span>
+          <span class="tech-pill">ScriptableObject</span>
+          <span class="tech-pill">Mobile</span>
+          <span class="tech-pill">WebGL</span>
+        </div>
+        <div class="store-row">
+          <a href="https://detrear.itch.io/2d-character-controller-playmatrix-studio" target="_blank" rel="noopener" class="btn-play" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            Play Demo
+          </a>
+          <a href="https://github.com/Aayush-jangir/CharacterController2D" target="_blank" rel="noopener" class="btn-github" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            GitHub
+          </a>
+          <button class="btn-details" onclick="event.stopPropagation();openModal('char2d')">Details ↗</button>
         </div>
       </div>
       <div class="project-arrow">↗</div>
@@ -475,16 +524,6 @@ footer a{color:var(--accent);text-decoration:none;}
 </div>
 
 <script>
-/* ═══════════════════════════════════════════════
-   DYNAMIC BACKGROUND
-   · Gold + purple particles float freely
-   · Lines connect nearby particles
-   · Mouse ATTRACTS particles (soft pull)
-   · Click anywhere = ripple shockwave
-   · Nodes near cursor glow brighter
-   · Shooting stars streak every 4s
-   · Canvas z:0, always behind all sections
-═══════════════════════════════════════════════ */
 (function(){
   const cv=document.getElementById('bg-canvas');
   const cx=cv.getContext('2d');
@@ -493,26 +532,14 @@ footer a{color:var(--accent);text-decoration:none;}
   const N=105;
 
   function resize(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;}
-
   function rnd(a,b){return Math.random()*(b-a)+a;}
 
   function mkPt(fast){
     const isNode=Math.random()>0.72;
-    const type=Math.random(); // 0-0.5 gold, 0.5-0.85 purple, 0.85-1 blue
+    const type=Math.random();
     const angle=rnd(0,Math.PI*2);
     const spd=fast?rnd(1.8,3.5):rnd(0.06,0.2);
-    return{
-      x:rnd(0,W),y:rnd(0,H),
-      vx:Math.cos(angle)*spd,vy:Math.sin(angle)*spd,
-      r:isNode?rnd(2.5,4.5):rnd(0.8,1.8),
-      isNode,
-      colorType:type<0.5?'gold':type<0.85?'purple':'blue',
-      phase:rnd(0,Math.PI*2),
-      pulseSpd:rnd(0.009,0.026),
-      baseAlpha:rnd(0.15,0.5),
-      fast:!!fast,
-      life:fast?1:null
-    };
+    return{x:rnd(0,W),y:rnd(0,H),vx:Math.cos(angle)*spd,vy:Math.sin(angle)*spd,r:isNode?rnd(2.5,4.5):rnd(0.8,1.8),isNode,colorType:type<0.5?'gold':type<0.85?'purple':'blue',phase:rnd(0,Math.PI*2),pulseSpd:rnd(0.009,0.026),baseAlpha:rnd(0.15,0.5),fast:!!fast,life:fast?1:null};
   }
 
   function getColor(p,alpha){
@@ -536,8 +563,6 @@ footer a{color:var(--accent);text-decoration:none;}
 
   function frame(){
     cx.clearRect(0,0,W,H);
-
-    // update
     for(let i=pts.length-1;i>=0;i--){
       const p=pts[i];
       p.phase+=p.pulseSpd;
@@ -545,14 +570,9 @@ footer a{color:var(--accent);text-decoration:none;}
         p.life-=0.007;
         if(p.life<=0||p.x<-25||p.x>W+25){pts.splice(i,1);continue;}
       } else {
-        // gentle attract to mouse
         const dx=mouse.x-p.x,dy=mouse.y-p.y;
         const d2=dx*dx+dy*dy;
-        if(d2<62500&&d2>100){
-          const d=Math.sqrt(d2);
-          const f=(250-d)/250*0.01;
-          p.vx+=dx/d*f;p.vy+=dy/d*f;
-        }
+        if(d2<62500&&d2>100){const d=Math.sqrt(d2);const f=(250-d)/250*0.01;p.vx+=dx/d*f;p.vy+=dy/d*f;}
         const spd=Math.sqrt(p.vx*p.vx+p.vy*p.vy);
         if(spd>0.85){p.vx*=0.96;p.vy*=0.96;}
         p.vx*=0.9998;p.vy*=0.9998;
@@ -561,23 +581,13 @@ footer a{color:var(--accent);text-decoration:none;}
       }
       p.x+=p.vx;p.y+=p.vy;
     }
-
-    // ripples
     for(let i=ripples.length-1;i>=0;i--){
-      const r=ripples[i];
-      r.radius+=3.5;r.alpha-=0.016;
+      const r=ripples[i];r.radius+=3.5;r.alpha-=0.016;
       if(r.alpha<=0){ripples.splice(i,1);continue;}
-      // inner ring
       cx.beginPath();cx.arc(r.x,r.y,r.radius,0,Math.PI*2);
       cx.strokeStyle=`rgba(155,109,255,${r.alpha})`;cx.lineWidth=1;cx.stroke();
-      // outer faint ring
-      if(r.radius>20){
-        cx.beginPath();cx.arc(r.x,r.y,r.radius*1.5,0,Math.PI*2);
-        cx.strokeStyle=`rgba(200,169,110,${r.alpha*0.3})`;cx.lineWidth=0.5;cx.stroke();
-      }
+      if(r.radius>20){cx.beginPath();cx.arc(r.x,r.y,r.radius*1.5,0,Math.PI*2);cx.strokeStyle=`rgba(200,169,110,${r.alpha*0.3})`;cx.lineWidth=0.5;cx.stroke();}
     }
-
-    // connections
     const statics=pts.filter(p=>!p.fast);
     cx.lineWidth=0.5;
     for(let i=0;i<statics.length;i++){
@@ -587,22 +597,16 @@ footer a{color:var(--accent);text-decoration:none;}
         const d=Math.sqrt(dx*dx+dy*dy);
         if(d<130){
           const alpha=(1-d/130)*0.11;
-          // color based on nearer particle
-          const col=a.colorType==='purple'||b.colorType==='purple'
-            ?`rgba(155,109,255,${alpha})`
-            :`rgba(200,169,110,${alpha})`;
+          const col=a.colorType==='purple'||b.colorType==='purple'?`rgba(155,109,255,${alpha})`:`rgba(200,169,110,${alpha})`;
           cx.beginPath();cx.strokeStyle=col;cx.moveTo(a.x,a.y);cx.lineTo(b.x,b.y);cx.stroke();
         }
       }
     }
-
-    // draw particles
     for(const p of pts){
       const pulse=Math.sin(p.phase);
       const mdx=p.x-mouse.x,mdy=p.y-mouse.y;
       const mdist=Math.sqrt(mdx*mdx+mdy*mdy);
       const glowBoost=mdist<140?((140-mdist)/140)*0.38:0;
-
       if(p.fast){
         const a=p.life*0.7;
         cx.beginPath();cx.moveTo(p.x,p.y);cx.lineTo(p.x-p.vx*14,p.y-p.vy*14);
@@ -611,32 +615,19 @@ footer a{color:var(--accent);text-decoration:none;}
         cx.fillStyle=`rgba(232,201,138,${a})`;cx.fill();
         continue;
       }
-
       const a=(p.baseAlpha+glowBoost)*(0.65+0.35*pulse);
-
       if(p.isNode){
-        if(glowBoost>0.06){
-          cx.beginPath();cx.arc(p.x,p.y,p.r+5+glowBoost*7,0,Math.PI*2);
-          cx.strokeStyle=getColor(p,a*0.2);cx.lineWidth=0.5;cx.stroke();
-        }
-        cx.beginPath();cx.arc(p.x,p.y,p.r+1.5+pulse*1.5,0,Math.PI*2);
-        cx.strokeStyle=getColor(p,a*0.35);cx.lineWidth=0.7;cx.stroke();
-        cx.beginPath();cx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        cx.fillStyle=getColor(p,a);cx.fill();
+        if(glowBoost>0.06){cx.beginPath();cx.arc(p.x,p.y,p.r+5+glowBoost*7,0,Math.PI*2);cx.strokeStyle=getColor(p,a*0.2);cx.lineWidth=0.5;cx.stroke();}
+        cx.beginPath();cx.arc(p.x,p.y,p.r+1.5+pulse*1.5,0,Math.PI*2);cx.strokeStyle=getColor(p,a*0.35);cx.lineWidth=0.7;cx.stroke();
+        cx.beginPath();cx.arc(p.x,p.y,p.r,0,Math.PI*2);cx.fillStyle=getColor(p,a);cx.fill();
       } else {
-        cx.beginPath();cx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        cx.fillStyle=getColor(p,a*0.75);cx.fill();
+        cx.beginPath();cx.arc(p.x,p.y,p.r,0,Math.PI*2);cx.fillStyle=getColor(p,a*0.75);cx.fill();
       }
     }
-
-    // scan line
     scanY=(scanY+0.32)%H;
     const g=cx.createLinearGradient(0,scanY-55,0,scanY+55);
-    g.addColorStop(0,'rgba(155,109,255,0)');
-    g.addColorStop(0.5,'rgba(155,109,255,0.018)');
-    g.addColorStop(1,'rgba(155,109,255,0)');
+    g.addColorStop(0,'rgba(155,109,255,0)');g.addColorStop(0.5,'rgba(155,109,255,0.018)');g.addColorStop(1,'rgba(155,109,255,0)');
     cx.fillStyle=g;cx.fillRect(0,scanY-55,W,110);
-
     requestAnimationFrame(frame);
   }
 
@@ -647,21 +638,18 @@ footer a{color:var(--accent);text-decoration:none;}
     if(e.target.closest('a,button,.modal,.lightbox')) return;
     ripples.push({x:e.clientX,y:e.clientY,radius:0,alpha:0.45});
   });
-
   init();requestAnimationFrame(frame);
 })();
 
-/* ═══════════════════════════════════════════════
-   MODAL SYSTEM
-═══════════════════════════════════════════════ */
+/* MODAL SYSTEM */
 const PROJECTS={
   mirror:{
     title:'MIRROR REFLECTION',
-    subtitle:'Unity · Puzzle · Released on itch.io · Google Play Apr 25, 2026',
+    subtitle:'Unity · Puzzle · Released on itch.io & Google Play',
     engine:'unity',engineLabel:'Unity',
     genre:'Puzzle Game',
     coverImg:'mirror-cover.png',
-    desc:'A minimalist laser-reflection puzzle game where you fire a beam and guide it to the target using mirrors. Features 59+ handcrafted levels with escalating complexity, a star-rating system, per-level high scores, smooth animations, and a polished mobile UI. Available now on itch.io (WebGL) and launching on Google Play on April 25, 2026.',
+    desc:'A minimalist laser-reflection puzzle game where you fire a beam and guide it to the target using mirrors. Features 59+ handcrafted levels with escalating complexity, a star-rating system, per-level high scores, smooth animations, and a polished mobile UI. Available now on itch.io (WebGL) and Google Play.',
     features:[
       '59+ handcrafted puzzle levels',
       'Star rating & scoring system',
@@ -670,12 +658,38 @@ const PROJECTS={
       'Polished mobile UI',
       'Particle starfield background',
       'WebGL + Android build',
-      'Developed by Detrear Yaeger'
+      'Published on Google Play'
     ],
     tech:['C#','Unity','Raycasting','LineRenderer','Mobile','WebGL','UI Toolkit','PlayerPrefs'],
     screenshots:['mirror-ss1.png','mirror-ss2.png','mirror-ss3.png','mirror-ss4.png','mirror-ss5.png'],
     itchUrl:'https://detrear.itch.io/mirror-reflection',
-    playUrl:null
+    playUrl:'https://play.google.com/store/apps/details?id=com.playmatrixstudio.mirrorreflection'
+  },
+  char2d:{
+    title:'2D CHARACTER CONTROLLER',
+    subtitle:'Unity 6.3 LTS · URP · Plug-in-ready System · PC + Android + WebGL',
+    engine:'unity',engineLabel:'Unity 6.3',
+    genre:'Tool / System',
+    coverImg:null,
+    desc:'A complete, production-ready 2D platformer character controller built for Unity 6.3 LTS and URP. Drop it into any 2D project and get full movement — walking, running, crouching, jumping, double jumping, dashing, wall sliding, and wall jumping — all driven by a clean Finite State Machine and configured entirely through a ScriptableObject. No code changes required to tune the feel.',
+    features:[
+      '10-state Finite State Machine',
+      'Coyote Time & Jump Buffering',
+      'Variable jump height (hold = higher)',
+      'Ground & air dash with cooldown',
+      'Wall Slide & Wall Jump',
+      'Mobile on-screen controls',
+      'ScriptableObject configuration',
+      'Cinemachine 3.x camera follow',
+      'PC + Android + WebGL verified',
+      'Full Animator with Blend Trees'
+    ],
+    tech:['C#','Unity 6.3 LTS','URP','Input System 1.19','Cinemachine 3.1.7','ScriptableObject','Tilemap','Mobile','WebGL','PC'],
+    screenshots:[],
+    itchUrl:'https://detrear.itch.io/2d-character-controller-playmatrix-studio',
+    playUrl:null,
+    githubUrl:'https://github.com/Aayush-jangir/CharacterController2D',
+    youtubeUrl:'https://www.youtube.com/watch?v=dR7izMSxYmQ'
   },
   solar:{
     title:'SOLAR SYSTEM SIMULATION',
@@ -708,14 +722,16 @@ function openModal(id){
     ?`<div class="modal-header"><img src="${p.coverImg}" class="modal-header-cover" alt="${p.title}" onerror="this.style.display='none'"><button class="modal-close" onclick="closeModalDirect()">✕</button></div>`
     :`<div class="modal-header" style="min-height:100px;"><span style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:rgba(255,255,255,0.08);">${p.genre.toUpperCase()}</span><button class="modal-close" onclick="closeModalDirect()">✕</button></div>`;
 
-  const storeHTML=p.itchUrl||p.playUrl?`
-    <span class="modal-section-label">Play</span>
+  const storeHTML=(p.itchUrl||p.playUrl||p.githubUrl||p.youtubeUrl)?`
+    <span class="modal-section-label">Links</span>
     <div class="modal-store-row">
-      ${p.itchUrl?`<a href="${p.itchUrl}" target="_blank" rel="noopener" class="btn-itch"><svg viewBox="0 0 245 244" width="13" height="13" fill="currentColor"><path d="M31.99 243.61C14.2 232.4.8 202.7.8 202.7s11.3-53.1 13.7-60.3c8.5-25.7 27.1-31.2 27.1-31.2s46.4 5.7 80.4 5.7c34 0 80.5-5.7 80.5-5.7s18.6 5.5 27.1 31.2c2.4 7.2 13.7 60.3 13.7 60.3s-13.4 29.7-31.2 40.9c0 0-21.4-3.8-90.1-3.8s-90.1 3.8-90.1 3.8z"/><path d="M122.5 0C55.3 0 0 16.7 0 37.3v6.2c0 11.5 11.4 21.7 29.3 29.2 0 0 4.7-10.1 24.3-16.4 0 0-15.5 14.5-15.5 36.5 0 22.6 17.2 34 35.3 34 18.1 0 34.8-10.8 34.8-31.3 0-11-4.7-21.4-13.6-29.6 8.2-1.2 17.4-1.8 27.9-1.8 10.5 0 19.7.6 27.9 1.8-8.9 8.2-13.6 18.6-13.6 29.6 0 20.5 16.7 31.3 34.8 31.3 18.1 0 35.3-11.4 35.3-34 0-22-15.5-36.5-15.5-36.5 19.6 6.3 24.3 16.4 24.3 16.4 17.9-7.5 29.3-17.7 29.3-29.2v-6.2C245 16.7 189.7 0 122.5 0z"/></svg>Play on itch.io</a>`:''}
+      ${p.itchUrl?`<a href="${p.itchUrl}" target="_blank" rel="noopener" class="btn-itch"><svg viewBox="0 0 245 244" width="13" height="13" fill="currentColor"><path d="M31.99 243.61C14.2 232.4.8 202.7.8 202.7s11.3-53.1 13.7-60.3c8.5-25.7 27.1-31.2 27.1-31.2s46.4 5.7 80.4 5.7c34 0 80.5-5.7 80.5-5.7s18.6 5.5 27.1 31.2c2.4 7.2 13.7 60.3 13.7 60.3s-13.4 29.7-31.2 40.9c0 0-21.4-3.8-90.1-3.8s-90.1 3.8-90.1 3.8z"/><path d="M122.5 0C55.3 0 0 16.7 0 37.3v6.2c0 11.5 11.4 21.7 29.3 29.2 0 0 4.7-10.1 24.3-16.4 0 0-15.5 14.5-15.5 36.5 0 22.6 17.2 34 35.3 34 18.1 0 34.8-10.8 34.8-31.3 0-11-4.7-21.4-13.6-29.6 8.2-1.2 17.4-1.8 27.9-1.8 10.5 0 19.7.6 27.9 1.8-8.9 8.2-13.6 18.6-13.6 29.6 0 20.5 16.7 31.3 34.8 31.3 18.1 0 35.3-11.4 35.3-34 0-22-15.5-36.5-15.5-36.5 19.6 6.3 24.3 16.4 24.3 16.4 17.9-7.5 29.3-17.7 29.3-29.2v-6.2C245 16.7 189.7 0 122.5 0z"/></svg>${p.id==='char2d'?'Play Demo':'Play on itch.io'}</a>`:''}
       ${p.playUrl?`<a href="${p.playUrl}" target="_blank" rel="noopener" class="btn-gplay"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M3.18 23.76c.35.2.74.24 1.12.12l12.2-7.04-2.61-2.62-10.71 9.54zM.49 1.6C.18 1.97 0 2.5 0 3.16v17.68c0 .66.18 1.19.49 1.56l.08.08 9.9-9.9v-.23L.57 2.45l-.08.15zM20.08 10.3l-2.68-1.55-2.92 2.92 2.92 2.92 2.7-1.56c.77-.45.77-1.18-.02-1.73zM4.3.12L16.5 7.16l-2.61 2.61L3.18.24C3.56.12 3.95.16 4.3.36z"/></svg>Google Play</a>`:''}
+      ${p.githubUrl?`<a href="${p.githubUrl}" target="_blank" rel="noopener" class="btn-github"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>Source Code</a>`:''}
+      ${p.youtubeUrl?`<a href="${p.youtubeUrl}" target="_blank" rel="noopener" class="btn-play"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M8 5v14l11-7z"/></svg>Watch Demo</a>`:''}
     </div>`:'';
 
-  const ssHTML=p.screenshots.length?`
+  const ssHTML=p.screenshots&&p.screenshots.length?`
     <span class="modal-section-label">Screenshots</span>
     <div class="modal-screenshots">
       ${p.screenshots.map(s=>`<img src="${s}" alt="" loading="lazy" onclick="openLightbox('${s}')">`).join('')}
@@ -749,7 +765,6 @@ function openLightbox(src){document.getElementById('lightbox-img').src=src;docum
 function closeLightbox(){document.getElementById('lightbox').classList.remove('active');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModalDirect();closeLightbox();}});
 
-// solar card click
 document.querySelector('[onclick="openModal(\'solar\')"]')?.addEventListener('click',()=>openModal('solar'));
 
 const ob=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');ob.unobserve(el.target);}});},{threshold:0.1});
