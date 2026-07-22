@@ -294,7 +294,7 @@ footer a{color:var(--accent);text-decoration:none;}
     </div>
     <div class="about-stats fade-in">
       <div class="stat-card"><div class="stat-num">2+</div><div class="stat-label">Engines Mastered</div></div>
-      <div class="stat-card"><div class="stat-num">2</div><div class="stat-label">Projects Shipped</div></div>
+      <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Projects Shipped</div></div>
       <div class="stat-card"><div class="stat-num">59+</div><div class="stat-label">Levels Designed</div></div>
       <div class="stat-card"><div class="stat-num">∞</div><div class="stat-label">Iterations Shipped</div></div>
     </div>
@@ -443,6 +443,97 @@ footer a{color:var(--accent);text-decoration:none;}
       <div class="project-arrow">↗</div>
     </div>
 
+    <!-- INVENTORY SYSTEM -->
+    <div class="project-card fade-in" onclick="openModal('inventory')">
+      <div class="project-img" style="height:220px;position:relative;">
+        <svg viewBox="0 0 400 220" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;display:block;">
+          <defs>
+            <radialGradient id="bginv" cx="50%" cy="50%"><stop offset="0%" stop-color="#0e1a2e"/><stop offset="100%" stop-color="#09090f"/></radialGradient>
+          </defs>
+          <rect width="400" height="220" fill="url(#bginv)"/>
+          <!-- Grid slots -->
+          <g opacity="0.85">
+            <!-- Row 1 -->
+            <rect x="60" y="30" width="36" height="36" rx="2" fill="rgba(155,109,255,0.18)" stroke="rgba(155,109,255,0.4)" stroke-width="0.8"/>
+            <rect x="102" y="30" width="36" height="36" rx="2" fill="rgba(200,169,110,0.22)" stroke="rgba(200,169,110,0.5)" stroke-width="0.8"/>
+            <rect x="144" y="30" width="36" height="36" rx="2" fill="rgba(74,222,128,0.12)" stroke="rgba(74,222,128,0.35)" stroke-width="0.8"/>
+            <rect x="186" y="30" width="36" height="36" rx="2" fill="rgba(16,14,26,0.6)" stroke="rgba(140,100,220,0.2)" stroke-width="0.8"/>
+            <rect x="228" y="30" width="36" height="36" rx="2" fill="rgba(16,14,26,0.6)" stroke="rgba(140,100,220,0.2)" stroke-width="0.8"/>
+            <!-- Row 2 -->
+            <rect x="60" y="72" width="36" height="36" rx="2" fill="rgba(0,133,202,0.18)" stroke="rgba(0,133,202,0.4)" stroke-width="0.8"/>
+            <rect x="102" y="72" width="36" height="36" rx="2" fill="rgba(155,109,255,0.22)" stroke="rgba(155,109,255,0.5)" stroke-width="0.8"/>
+            <rect x="144" y="72" width="36" height="36" rx="2" fill="rgba(16,14,26,0.6)" stroke="rgba(140,100,220,0.2)" stroke-width="0.8"/>
+            <rect x="186" y="72" width="36" height="36" rx="2" fill="rgba(200,169,110,0.15)" stroke="rgba(200,169,110,0.35)" stroke-width="0.8"/>
+            <rect x="228" y="72" width="36" height="36" rx="2" fill="rgba(16,14,26,0.6)" stroke="rgba(140,100,220,0.2)" stroke-width="0.8"/>
+            <!-- Row 3 -->
+            <rect x="60" y="114" width="36" height="36" rx="2" fill="rgba(16,14,26,0.6)" stroke="rgba(140,100,220,0.2)" stroke-width="0.8"/>
+            <rect x="102" y="114" width="36" height="36" rx="2" fill="rgba(74,222,128,0.18)" stroke="rgba(74,222,128,0.4)" stroke-width="0.8"/>
+            <rect x="144" y="114" width="36" height="36" rx="2" fill="rgba(16,14,26,0.6)" stroke="rgba(140,100,220,0.2)" stroke-width="0.8"/>
+            <rect x="186" y="114" width="36" height="36" rx="2" fill="rgba(155,109,255,0.12)" stroke="rgba(155,109,255,0.3)" stroke-width="0.8"/>
+            <rect x="228" y="114" width="36" height="36" rx="2" fill="rgba(16,14,26,0.6)" stroke="rgba(140,100,220,0.2)" stroke-width="0.8"/>
+            <!-- Rarity dots -->
+            <circle cx="87" cy="57" r="3" fill="rgba(155,109,255,0.9)"/>
+            <circle cx="129" cy="57" r="3" fill="rgba(200,169,110,0.9)"/>
+            <circle cx="171" cy="57" r="3" fill="rgba(74,222,128,0.9)"/>
+            <circle cx="87" cy="99" r="3" fill="rgba(0,133,202,0.9)"/>
+            <circle cx="129" cy="99" r="3" fill="rgba(155,109,255,0.9)"/>
+          </g>
+          <!-- Hotbar -->
+          <g>
+            <rect x="60" y="168" width="28" height="28" rx="2" fill="rgba(200,169,110,0.25)" stroke="rgba(200,169,110,0.6)" stroke-width="1"/>
+            <rect x="94" y="168" width="28" height="28" rx="2" fill="rgba(155,109,255,0.2)" stroke="rgba(155,109,255,0.5)" stroke-width="1"/>
+            <rect x="128" y="168" width="28" height="28" rx="2" fill="rgba(16,14,26,0.6)" stroke="rgba(140,100,220,0.3)" stroke-width="1"/>
+            <rect x="162" y="168" width="28" height="28" rx="2" fill="rgba(16,14,26,0.6)" stroke="rgba(140,100,220,0.3)" stroke-width="1"/>
+            <rect x="196" y="168" width="28" height="28" rx="2" fill="rgba(16,14,26,0.6)" stroke="rgba(140,100,220,0.3)" stroke-width="1"/>
+            <!-- Active hotbar highlight -->
+            <rect x="59" y="167" width="30" height="30" rx="3" fill="none" stroke="rgba(200,169,110,0.8)" stroke-width="1.5"/>
+          </g>
+          <!-- Drag ghost -->
+          <rect x="270" y="60" width="36" height="36" rx="2" fill="rgba(155,109,255,0.35)" stroke="rgba(155,109,255,0.7)" stroke-width="1" opacity="0.85"/>
+          <circle cx="288" cy="78" r="4" fill="rgba(155,109,255,0.9)"/>
+          <!-- Labels -->
+          <text x="144" y="208" font-family="monospace" font-size="6.5" fill="rgba(200,169,110,0.5)" text-anchor="middle">HOTBAR</text>
+          <text x="310" y="55" font-family="monospace" font-size="6" fill="rgba(155,109,255,0.55)" text-anchor="middle">DRAG</text>
+          <text x="310" y="65" font-family="monospace" font-size="6" fill="rgba(155,109,255,0.55)" text-anchor="middle">DROP</text>
+          <!-- Tooltip -->
+          <rect x="268" y="105" width="90" height="52" rx="2" fill="rgba(14,12,24,0.95)" stroke="rgba(155,109,255,0.35)" stroke-width="0.8"/>
+          <text x="278" y="118" font-family="monospace" font-size="6" fill="rgba(200,169,110,0.9)">Iron Sword</text>
+          <text x="278" y="129" font-family="monospace" font-size="5" fill="rgba(155,109,255,0.7)">Epic · Weapon</text>
+          <text x="278" y="140" font-family="monospace" font-size="5" fill="rgba(122,127,150,0.8)">A blade forged in</text>
+          <text x="278" y="149" font-family="monospace" font-size="5" fill="rgba(122,127,150,0.8)">dragonfire.</text>
+        </svg>
+      </div>
+      <div class="project-info">
+        <div class="project-engine">
+          <span class="engine-badge unity">Unity 6.3 LTS</span>
+          <span class="engine-badge released">Tool / System</span>
+        </div>
+        <h3 class="project-title">INVENTORY SYSTEM</h3>
+        <p class="project-desc">Production-ready plug-in-ready inventory system. 29-slot grid + hotbar, drag-and-drop, stack splitting, rarity tiers, world drop, auto-pickup, and full mobile support. Zero code changes to configure.</p>
+        <div class="project-tech">
+          <span class="tech-pill">C#</span>
+          <span class="tech-pill">Unity 6.3</span>
+          <span class="tech-pill">ScriptableObject</span>
+          <span class="tech-pill">Input System</span>
+          <span class="tech-pill">Object Pooling</span>
+          <span class="tech-pill">Mobile</span>
+          <span class="tech-pill">WebGL</span>
+        </div>
+        <div class="store-row">
+          <a href="https://detrear.itch.io/inventory-system-playmatrix-studio" target="_blank" rel="noopener" class="btn-play" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            Play Demo
+          </a>
+          <a href="https://github.com/Aayush-jangir/InventorySystem" target="_blank" rel="noopener" class="btn-github" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            GitHub
+          </a>
+          <button class="btn-details" onclick="event.stopPropagation();openModal('inventory')">Details ↗</button>
+        </div>
+      </div>
+      <div class="project-arrow">↗</div>
+    </div>
+    
     <!-- SOLAR SYSTEM SIM -->
     <div class="project-card fade-in" onclick="openModal('solar')">
       <div class="project-img solar-wrap">
@@ -690,6 +781,32 @@ const PROJECTS={
     playUrl:null,
     githubUrl:'https://github.com/Aayush-jangir/CharacterController2D',
     youtubeUrl:'https://www.youtube.com/watch?v=dR7izMSxYmQ'
+  },
+  inventory:{
+    title:'INVENTORY SYSTEM',
+    subtitle:'Unity 6.3 LTS · URP · Plug-in-ready System · PC + Android + WebGL',
+    engine:'unity',engineLabel:'Unity 6.3',
+    genre:'Tool / System',
+    coverImg:null,
+    desc:'A complete, production-ready inventory system built for Unity 6.3 LTS and URP. Drop it into any project and get a fully functional 29-slot inventory (24 grid + 5 hotbar), drag-and-drop between slots, stack splitting, item tooltips, world drop and auto-pickup — all driven by a static C# event hub and configured entirely through ScriptableObjects.',
+    features:[
+      '29-slot inventory (24 grid + 5 hotbar)',
+      'Drag and drop with stack merging',
+      'Stack split — right-click PC / long press mobile',
+      '5-tier rarity system (Common → Legendary)',
+      'World drop and auto-pickup',
+      'Object pooling for WorldItems',
+      'Full mobile — joystick + BAG button',
+      'ScriptableObject configuration',
+      'Static C# event hub architecture',
+      'PC + Android + WebGL verified'
+    ],
+    tech:['C#','Unity 6.3 LTS','URP','Input System','ScriptableObject','Object Pooling','TextMeshPro','Mobile','WebGL','PC'],
+    screenshots:[],
+    itchUrl:'https://detrear.itch.io/inventory-system-playmatrix-studio',
+    playUrl:null,
+    githubUrl:'https://github.com/Aayush-jangir/InventorySystem',
+    youtubeUrl:'https://youtu.be/bWhDFMEanPQ'
   },
   solar:{
     title:'SOLAR SYSTEM SIMULATION',
