@@ -8,7 +8,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;}
+/* nothing on the page is selectable or draggable */
+img,svg,canvas{-webkit-user-drag:none;user-drag:none;}
+::selection{background:transparent;}::-moz-selection{background:transparent;}
+input,textarea{-webkit-user-select:text;user-select:text;}
 :root{
   --bg:#09090f;
   --card:rgba(16,14,26,0.75);
@@ -259,14 +263,15 @@ footer a{color:var(--accent);text-decoration:none;}
   <div class="hero-content">
     <div class="hero-label">Portfolio — Game Developer</div>
     <h1 class="hero-name">DETREAR<br><span>YAEGER</span><span class="cursor-blink"></span></h1>
-    <p class="hero-tagline">Indie Game Developer crafting interactive worlds with Unity &amp; Unreal Engine 5.</p>
+    <p class="hero-tagline">Indie Game Developer crafting interactive worlds with Unity, Unreal Engine 5 &amp; UEFN.</p>
     <div class="hero-tags">
       <span class="tag open">Open to Work</span>
       <span class="tag unity">Unity</span>
       <span class="tag ue">Unreal Engine 5</span>
+      <span class="tag ue">UEFN &middot; Verse</span>
       <span class="tag">B.Tech Graduate</span>
       <span class="tag">Adv. Diploma — Game Dev</span>
-      <span class="tag">Hyderabad, IN</span>
+      <span class="tag">Jaipur, IN</span>
     </div>
     <div class="hero-cta">
       <a href="#projects" class="btn-primary">View Projects</a>
@@ -289,13 +294,13 @@ footer a{color:var(--accent);text-decoration:none;}
   <div class="about-grid">
     <div class="about-text fade-in">
       <p>I'm <strong>Detrear Yaeger</strong>, an <span class="highlight">indie game developer</span> with a deep passion for building compelling game experiences from the ground up. I hold a <strong>Bachelor of Technology</strong> and am currently completing an <strong>Advanced Diploma in Game Development</strong> specializing in both Unity and Unreal Engine.</p>
-      <p>My philosophy is simple: <strong>build first, polish second</strong>. I thrive in the prototyping phase — turning a design idea into a playable experience as fast as possible, then iterating relentlessly. I shipped my first full game, <span class="highlight">Mirror Reflection</span>, on itch.io and Google Play, and I'm now actively building a portfolio of reusable Unity systems under <span class="highlight">Playmatrix Studio</span>.</p>
-      <p>I'm equally at home in Unity's C# ecosystem and Unreal's Blueprint visual scripting, giving me the flexibility to choose the <span class="highlight">right tool for the right game</span>.</p>
+      <p>My philosophy is simple: <strong>build first, polish second</strong>. I thrive in the prototyping phase — turning a design idea into a playable experience as fast as possible, then iterating relentlessly. I shipped my first full game, <span class="highlight">Mirror Reflection</span>, on itch.io and Google Play, and most recently built and published <span class="highlight">The Scar</span> — a 16-player team arena island written in Verse — to Fortnite for the Epic Games UEFN Student Bootcamp. Alongside those I build a portfolio of reusable Unity systems under <span class="highlight">Playmatrix Studio</span>.</p>
+      <p>I'm equally at home in Unity's C# ecosystem, Unreal's Blueprint visual scripting and Verse in UEFN, giving me the flexibility to choose the <span class="highlight">right tool for the right game</span>. I ship end to end — including the unglamorous parts: performance on low-end devices, age ratings, content review and store publishing.</p>
     </div>
     <div class="about-stats fade-in">
-      <div class="stat-card"><div class="stat-num">2+</div><div class="stat-label">Engines Mastered</div></div>
-      <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Projects Shipped</div></div>
-      <div class="stat-card"><div class="stat-num">59+</div><div class="stat-label">Levels Designed</div></div>
+      <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Engines Shipped On</div></div>
+      <div class="stat-card"><div class="stat-num">5</div><div class="stat-label">Projects Shipped</div></div>
+      <div class="stat-card"><div class="stat-num">100</div><div class="stat-label">Levels Designed</div></div>
       <div class="stat-card"><div class="stat-num">∞</div><div class="stat-label">Iterations Shipped</div></div>
     </div>
   </div>
@@ -315,12 +320,14 @@ footer a{color:var(--accent);text-decoration:none;}
       <div class="skill-item"><span class="skill-name">Unity (C#)</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="85"></div></div></div>
       <div class="skill-item"><span class="skill-name">Unreal Engine 5</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="75"></div></div></div>
       <div class="skill-item"><span class="skill-name">Blueprint (UE5)</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="78"></div></div></div>
+      <div class="skill-item"><span class="skill-name">UEFN</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="72"></div></div></div>
       <div class="skill-item"><span class="skill-name">UE Physics</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="65"></div></div></div>
     </div>
     <div class="skill-group fade-in">
       <div class="skill-group-icon">💻</div>
       <div class="skill-group-title">Programming</div>
       <div class="skill-item"><span class="skill-name">C# (Unity)</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="83"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Verse (UEFN)</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="70"></div></div></div>
       <div class="skill-item"><span class="skill-name">C++ (Unreal)</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="55"></div></div></div>
       <div class="skill-item"><span class="skill-name">Git / GitHub</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="72"></div></div></div>
       <div class="skill-item"><span class="skill-name">OOP Principles</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="85"></div></div></div>
@@ -345,6 +352,67 @@ footer a{color:var(--accent);text-decoration:none;}
   </div>
   <div class="projects-grid">
 
+    <!-- THE SCAR - featured -->
+    <div class="project-card featured fade-in">
+      <div class="project-img">
+        <svg viewBox="0 0 380 360" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto;">
+          <defs>
+            <radialGradient id="bgscar" cx="50%" cy="35%"><stop offset="0%" stop-color="#1a0a2e"/><stop offset="100%" stop-color="#09090f"/></radialGradient>
+            <linearGradient id="keepg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(200,169,110,0.30)"/><stop offset="100%" stop-color="rgba(200,169,110,0.06)"/></linearGradient>
+          </defs>
+          <rect width="380" height="360" fill="url(#bgscar)"/>
+          <circle cx="190" cy="78" r="46" fill="rgba(200,169,110,0.08)"/>
+          <circle cx="190" cy="78" r="22" fill="rgba(200,169,110,0.14)"/>
+          <path d="M181 68 h18 v10 a9 9 0 0 1 -18 0 z" fill="rgba(200,169,110,0.85)"/>
+          <rect x="187" y="88" width="6" height="8" fill="rgba(200,169,110,0.85)"/>
+          <rect x="181" y="96" width="18" height="4" rx="1" fill="rgba(200,169,110,0.85)"/>
+          <path d="M120 150 h140 v96 h-140 z" fill="url(#keepg)" stroke="rgba(200,169,110,0.35)" stroke-width="1"/>
+          <path d="M120 150 h10 v-12 h10 v12 h10 v-12 h10 v12 h60 v-12 h10 v12 h10 v-12 h10 v12 h10" fill="none" stroke="rgba(200,169,110,0.45)" stroke-width="1.5"/>
+          <rect x="176" y="200" width="28" height="46" rx="14" fill="rgba(9,8,16,0.9)" stroke="rgba(200,169,110,0.4)" stroke-width="1"/>
+          <path d="M40 300 L340 300" stroke="rgba(155,109,255,0.28)" stroke-width="2"/>
+          <g>
+            <rect x="52" y="262" width="7" height="38" fill="rgba(232,90,90,0.75)"/><rect x="52" y="262" width="7" height="12" fill="rgba(232,90,90,1)"/>
+            <rect x="84" y="272" width="7" height="28" fill="rgba(90,150,235,0.75)"/><rect x="84" y="272" width="7" height="10" fill="rgba(90,150,235,1)"/>
+            <rect x="112" y="256" width="7" height="44" fill="rgba(74,222,128,0.7)"/><rect x="112" y="256" width="7" height="13" fill="rgba(74,222,128,1)"/>
+            <rect x="146" y="270" width="7" height="30" fill="rgba(232,90,90,0.6)"/><rect x="146" y="270" width="7" height="10" fill="rgba(232,90,90,0.95)"/>
+            <rect x="196" y="258" width="7" height="42" fill="rgba(228,196,84,0.72)"/><rect x="196" y="258" width="7" height="13" fill="rgba(228,196,84,1)"/>
+            <rect x="226" y="274" width="7" height="26" fill="rgba(90,150,235,0.6)"/><rect x="226" y="274" width="7" height="9" fill="rgba(90,150,235,0.95)"/>
+            <rect x="256" y="264" width="7" height="36" fill="rgba(74,222,128,0.6)"/><rect x="256" y="264" width="7" height="12" fill="rgba(74,222,128,0.95)"/>
+            <rect x="288" y="268" width="7" height="32" fill="rgba(228,196,84,0.6)"/><rect x="288" y="268" width="7" height="11" fill="rgba(228,196,84,0.95)"/>
+            <rect x="318" y="278" width="7" height="22" fill="rgba(232,90,90,0.5)"/><rect x="318" y="278" width="7" height="8" fill="rgba(232,90,90,0.9)"/>
+          </g>
+          <text x="190" y="336" text-anchor="middle" font-family="monospace" font-size="14" letter-spacing="3" fill="rgba(255,255,255,0.32)">4947-0294-9253</text>
+        </svg>
+      </div>
+      <div class="project-info">
+        <div class="project-engine">
+          <span class="engine-badge ue">UEFN &middot; Verse</span>
+          <span class="engine-badge released">Released</span>
+          <span class="engine-badge released">Fortnite &mdash; Live &check;</span>
+        </div>
+        <h3 class="project-title">THE SCAR</h3>
+        <p class="project-desc">A 16-player, four-team arena island built in UEFN with Verse for the Epic Games UEFN Student Bootcamp. Every elimination permanently plants a banner in the killer&rsquo;s team colour, so the arena fills with a visual record of the match as it happens. Top the eliminations and you become the Juggernaut &mdash; after that the title moves only by killing whoever holds it.</p>
+        <div class="project-tech">
+          <span class="tech-pill">Verse</span>
+          <span class="tech-pill">UEFN</span>
+          <span class="tech-pill">Unreal Engine 5</span>
+          <span class="tech-pill">Object Pooling</span>
+          <span class="tech-pill">Team Logic</span>
+          <span class="tech-pill">HUD / UX</span>
+        </div>
+        <div class="store-row">
+          <a href="https://www.fortnite.com/@detreardev/4947-0294-9253" target="_blank" rel="noopener" class="btn-play" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            Play on Fortnite
+          </a>
+          <button class="btn-details" onclick="openModal('scar')">
+            Details &#8599;
+          </button>
+        </div>
+      </div>
+      <div class="project-arrow">&#8599;</div>
+    </div>
+
     <!-- MIRROR REFLECTION — featured -->
     <div class="project-card featured fade-in">
       <div class="project-img">
@@ -357,7 +425,7 @@ footer a{color:var(--accent);text-decoration:none;}
           <span class="engine-badge released">Google Play — Live ✓</span>
         </div>
         <h3 class="project-title">MIRROR REFLECTION</h3>
-        <p class="project-desc">A minimalist laser-reflection puzzle game with 59+ levels, a scoring system, star ratings, and a polished UI. Available now on itch.io and Google Play.</p>
+        <p class="project-desc">A minimalist laser-reflection puzzle game — 100 levels across 5 worlds, endless mode, daily challenges, Firebase cloud saves and 10 languages. Live on Google Play.</p>
         <div class="project-tech">
           <span class="tech-pill">C#</span>
           <span class="tech-pill">Unity</span>
@@ -534,6 +602,63 @@ footer a{color:var(--accent);text-decoration:none;}
       <div class="project-arrow">↗</div>
     </div>
     
+
+    <!-- SAVE SYSTEM -->
+    <div class="project-card fade-in" onclick="openModal('savesystem')">
+      <div class="project-img" style="height:220px;position:relative;">
+        <svg viewBox="0 0 400 220" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;display:block;">
+          <defs><radialGradient id="bgsave" cx="50%" cy="50%"><stop offset="0%" stop-color="#1a0a2e"/><stop offset="100%" stop-color="#09090f"/></radialGradient></defs>
+          <rect width="400" height="220" fill="url(#bgsave)"/>
+          <g stroke="rgba(155,109,255,0.30)" stroke-width="1.5" fill="rgba(9,8,16,0.85)">
+            <rect x="52" y="42" width="296" height="42" rx="3"/>
+            <rect x="52" y="94" width="296" height="42" rx="3"/>
+            <rect x="52" y="146" width="296" height="42" rx="3"/>
+          </g>
+          <g fill="rgba(200,169,110,0.55)">
+            <rect x="64" y="52" width="44" height="22" rx="2"/>
+            <rect x="64" y="104" width="44" height="22" rx="2"/>
+            <rect x="64" y="156" width="44" height="22" rx="2"/>
+          </g>
+          <g fill="rgba(255,255,255,0.30)">
+            <rect x="120" y="55" width="96" height="6" rx="3"/><rect x="120" y="66" width="58" height="5" rx="2.5"/>
+            <rect x="120" y="107" width="112" height="6" rx="3"/><rect x="120" y="118" width="48" height="5" rx="2.5"/>
+            <rect x="120" y="159" width="80" height="6" rx="3"/><rect x="120" y="170" width="64" height="5" rx="2.5"/>
+          </g>
+          <g fill="none" stroke="rgba(155,109,255,0.75)" stroke-width="1.6">
+            <path d="M306 56 h20 v20 h-20 z"/><path d="M310 56 v8 h12 v-8"/>
+          </g>
+          <text x="316" y="122" text-anchor="middle" font-family="monospace" font-size="13" fill="rgba(74,222,128,0.75)">AES</text>
+          <text x="316" y="174" text-anchor="middle" font-family="monospace" font-size="13" fill="rgba(228,196,84,0.7)">XOR</text>
+        </svg>
+      </div>
+      <div class="project-info">
+        <div class="project-engine">
+          <span class="engine-badge unity">Unity 6.3</span>
+          <span class="engine-badge released">Tool / System</span>
+        </div>
+        <h3 class="project-title">SAVE &amp; LOAD SYSTEM</h3>
+        <p class="project-desc">Plug-in-ready save system for Unity 6.3 LTS. Three save slots with date, playtime and screenshot thumbnail, auto-save, JSON serialization and three swappable encryption providers.</p>
+        <div class="project-tech">
+          <span class="tech-pill">C#</span>
+          <span class="tech-pill">Unity 6.3</span>
+          <span class="tech-pill">Newtonsoft.Json</span>
+          <span class="tech-pill">AES-128</span>
+          <span class="tech-pill">ScriptableObject</span>
+          <span class="tech-pill">Mobile</span>
+        </div>
+        <div class="store-row">
+          <a href="https://github.com/Aayush-jangir/SaveSystem" target="_blank" rel="noopener" class="btn-github" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            Source Code
+          </a>
+          <button class="btn-details" onclick="event.stopPropagation();openModal('savesystem')">
+            Details &#8599;
+          </button>
+        </div>
+      </div>
+      <div class="project-arrow">&#8599;</div>
+    </div>
+
     <!-- SOLAR SYSTEM SIM -->
     <div class="project-card fade-in" onclick="openModal('solar')">
       <div class="project-img solar-wrap">
@@ -596,7 +721,7 @@ footer a{color:var(--accent);text-decoration:none;}
 </section>
 
 <footer>
-  <p>© 2026 Detrear Yaeger · Indie Game Developer · Hyderabad, IN</p>
+  <p>© 2026 Detrear Yaeger · Indie Game Developer · Jaipur, IN</p>
   <p>Built with <a href="https://pages.github.com" target="_blank">GitHub Pages</a> · <a href="https://github.com/Aayush-jangir" target="_blank">github.com/Aayush-jangir</a></p>
 </footer>
 
@@ -734,15 +859,67 @@ footer a{color:var(--accent);text-decoration:none;}
 
 /* MODAL SYSTEM */
 const PROJECTS={
+  scar:{
+    title:'THE SCAR',
+    subtitle:'UEFN \u00b7 Verse \u00b7 16-Player Team Arena \u00b7 Live on Fortnite',
+    engine:'ue',engineLabel:'UEFN',
+    genre:'Team Arena',
+    coverImg:null,
+    desc:'A 16-player, four-team arena island built in Unreal Editor for Fortnite with Verse, made for the Epic Games UEFN Student Bootcamp and published to Fortnite in August 2026. Every elimination permanently plants a banner in the killer\u2019s team colour, so the arena fills with a visual record of the match as it happens. The player with the most eliminations becomes the Juggernaut \u2014 after that the title moves only by killing whoever holds it, and holding it long enough unlocks a trophy chamber that only the Juggernaut can enter.',
+    features:[
+      '16 players across four teams',
+      'Persistent elimination banners in team colour',
+      'Juggernaut title, taken only by elimination',
+      'Trophy chamber gated to the Juggernaut',
+      'Built solo across seven Verse manager modules',
+      'Pre-allocated pool of 100 recycled banner props',
+      '0.29% missed frames in Epic production telemetry',
+      'Zero Verse runtime errors',
+      'Passed Epic content review and IARC age rating',
+      'HUD rebuilt from playtest feedback'
+    ],
+    tech:['Verse','UEFN','Unreal Engine 5','Object Pooling','Team Logic','HUD / UX','Playtesting'],
+    screenshots:[],
+    itchUrl:null,playUrl:null,
+    fortniteUrl:'https://www.fortnite.com/@detreardev/4947-0294-9253'
+  },
+  savesystem:{
+    title:'SAVE & LOAD SYSTEM',
+    subtitle:'Unity 6.3 LTS \u00b7 Plug-in-ready System \u00b7 PC + Android + WebGL',
+    engine:'unity',engineLabel:'Unity 6.3',
+    genre:'Tool / System',
+    coverImg:null,
+    desc:'A generic, plug-in-ready save and load system for Unity 6.3 LTS. Three save slots each carrying a save date, playtime and a gameplay screenshot thumbnail, manual and interval auto-save, JSON serialization through Newtonsoft.Json, and three swappable encryption providers. The whole thing is event-based \u2014 the UI never talks to the save manager directly, so you can swap the encryption provider, the storage backend or the slot count from one config asset.',
+    features:[
+      '3 save slots with date, playtime and screenshot',
+      'Manual save plus configurable auto-save',
+      'JSON serialization (Newtonsoft.Json)',
+      '3 encryption providers \u2014 Null, XOR+Base64, AES-128-CBC',
+      'ISaveable interface \u2014 connect a system in 3 lines',
+      'Pause menu with time freeze',
+      'Full mobile support with on-screen joystick',
+      '100% ScriptableObject driven configuration',
+      'PC + Android (IL2CPP) + WebGL verified'
+    ],
+    tech:['C#','Unity 6.3 LTS','Newtonsoft.Json','AES-128-CBC','ScriptableObject','Mobile','WebGL','PC'],
+    screenshots:[],
+    itchUrl:null,playUrl:null,
+    githubUrl:'https://github.com/Aayush-jangir/SaveSystem'
+  },
   mirror:{
     title:'MIRROR REFLECTION',
     subtitle:'Unity · Puzzle · Released on itch.io & Google Play',
     engine:'unity',engineLabel:'Unity',
     genre:'Puzzle Game',
     coverImg:'mirror-cover.png',
-    desc:'A minimalist laser-reflection puzzle game where you fire a beam and guide it to the target using mirrors. Features 59+ handcrafted levels with escalating complexity, a star-rating system, per-level high scores, smooth animations, and a polished mobile UI. Available now on itch.io (WebGL) and Google Play.',
+    desc:'A minimalist laser-reflection puzzle game where you fire a beam and guide it to the target using mirrors. Features 100 handcrafted levels across 5 worlds — VOID, NEBULA, PRISM, ABYSS and EMBER — each closing on a checkpoint and a boss level. Three shots per level and a timer counting down. Endless Mode generates infinite boards once World 1 is cleared. Live on Google Play in 10 languages, with Firebase cloud saves, daily challenges and a global leaderboard.',
     features:[
-      '59+ handcrafted puzzle levels',
+      '100 levels across 5 worlds',
+      'Endless Mode — infinite generated boards',
+      'Daily Challenge with streaks + global leaderboard',
+      'Firebase cloud save — continue on any device',
+      'Localised into 10 languages',
+      'Colour-blind mode with pattern-marked mirrors',
       'Star rating & scoring system',
       'Per-level high score tracking',
       'Multiple mirror & obstacle types',
@@ -839,9 +1016,10 @@ function openModal(id){
     ?`<div class="modal-header"><img src="${p.coverImg}" class="modal-header-cover" alt="${p.title}" onerror="this.style.display='none'"><button class="modal-close" onclick="closeModalDirect()">✕</button></div>`
     :`<div class="modal-header" style="min-height:100px;"><span style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:rgba(255,255,255,0.08);">${p.genre.toUpperCase()}</span><button class="modal-close" onclick="closeModalDirect()">✕</button></div>`;
 
-  const storeHTML=(p.itchUrl||p.playUrl||p.githubUrl||p.youtubeUrl)?`
+  const storeHTML=(p.itchUrl||p.playUrl||p.githubUrl||p.youtubeUrl||p.fortniteUrl)?`
     <span class="modal-section-label">Links</span>
     <div class="modal-store-row">
+      ${p.fortniteUrl?`<a href="${p.fortniteUrl}" target="_blank" rel="noopener" class="btn-play"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M8 5v14l11-7z"/></svg>Play on Fortnite</a>`:''}
       ${p.itchUrl?`<a href="${p.itchUrl}" target="_blank" rel="noopener" class="btn-itch"><svg viewBox="0 0 245 244" width="13" height="13" fill="currentColor"><path d="M31.99 243.61C14.2 232.4.8 202.7.8 202.7s11.3-53.1 13.7-60.3c8.5-25.7 27.1-31.2 27.1-31.2s46.4 5.7 80.4 5.7c34 0 80.5-5.7 80.5-5.7s18.6 5.5 27.1 31.2c2.4 7.2 13.7 60.3 13.7 60.3s-13.4 29.7-31.2 40.9c0 0-21.4-3.8-90.1-3.8s-90.1 3.8-90.1 3.8z"/><path d="M122.5 0C55.3 0 0 16.7 0 37.3v6.2c0 11.5 11.4 21.7 29.3 29.2 0 0 4.7-10.1 24.3-16.4 0 0-15.5 14.5-15.5 36.5 0 22.6 17.2 34 35.3 34 18.1 0 34.8-10.8 34.8-31.3 0-11-4.7-21.4-13.6-29.6 8.2-1.2 17.4-1.8 27.9-1.8 10.5 0 19.7.6 27.9 1.8-8.9 8.2-13.6 18.6-13.6 29.6 0 20.5 16.7 31.3 34.8 31.3 18.1 0 35.3-11.4 35.3-34 0-22-15.5-36.5-15.5-36.5 19.6 6.3 24.3 16.4 24.3 16.4 17.9-7.5 29.3-17.7 29.3-29.2v-6.2C245 16.7 189.7 0 122.5 0z"/></svg>${p.id==='char2d'?'Play Demo':'Play on itch.io'}</a>`:''}
       ${p.playUrl?`<a href="${p.playUrl}" target="_blank" rel="noopener" class="btn-gplay"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M3.18 23.76c.35.2.74.24 1.12.12l12.2-7.04-2.61-2.62-10.71 9.54zM.49 1.6C.18 1.97 0 2.5 0 3.16v17.68c0 .66.18 1.19.49 1.56l.08.08 9.9-9.9v-.23L.57 2.45l-.08.15zM20.08 10.3l-2.68-1.55-2.92 2.92 2.92 2.92 2.7-1.56c.77-.45.77-1.18-.02-1.73zM4.3.12L16.5 7.16l-2.61 2.61L3.18.24C3.56.12 3.95.16 4.3.36z"/></svg>Google Play</a>`:''}
       ${p.githubUrl?`<a href="${p.githubUrl}" target="_blank" rel="noopener" class="btn-github"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>Source Code</a>`:''}
