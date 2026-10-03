@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlaymatriX Studio | Detrear Yaeger</title>
+<meta name="description" content="The studio website rebuilt end to end on Next.js and Payload CMS. 94 to 99 on Google&#x27;s phone speed test, 100 for accessibility and SEO.">
+<meta name="theme-color" content="#09090b">
+<link rel="canonical" href="https://aayush-jangir.github.io/work/playmatrix-studio.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aayush-jangir.github.io/work/playmatrix-studio.html">
+<meta property="og:title" content="PlaymatriX Studio | Detrear Yaeger">
+<meta property="og:description" content="The studio website rebuilt end to end on Next.js and Payload CMS. 94 to 99 on Google&#x27;s phone speed test, 100 for accessibility and SEO.">
+<meta property="og:image" content="https://aayush-jangir.github.io/web-playmatrix.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23f4f4f5'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-weight='700' font-size='26' text-anchor='middle' fill='%2309090b'%3EDY%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a href="../" class="logo" aria-label="Detrear Yaeger, home"><i>DY</i>Detrear Yaeger</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="../#work">Work</a>
+      <a href="../#tools">Tools</a>
+      <a href="../#about">About</a>
+      <a href="../#contact" class="btn btn-accent btn-sm">Contact</a>
+    </nav>
+    <button class="menu" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+<main>
+<section class="case-hero">
+  <div class="wrap">
+    <a class="back" href="../#work"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>All work</a>
+    <div class="tags"><span class="tag live">Live website</span><span class="tag">Next.js</span><span class="tag">Payload CMS</span><span class="tag">Cloudflare</span></div>
+    <h1>PlaymatriX Studio</h1>
+    <p class="lede">The studio's own website, rebuilt end to end. The old site had every image broken, no security headers and no way for the team to change anything without a developer.</p>
+    <div class="hero-cta" style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn-accent" href="https://playmatrixstudio.com/" target="_blank" rel="noopener" data-umami-event="outbound-playmatrix">Visit playmatrixstudio.com</a></div>
+    <div class="meta"><div><b>Role</b><span>Design, development and deployment</span></div><div><b>Stack</b><span>Next.js, Payload CMS, Postgres, Cloudflare R2</span></div><div><b>Hosting</b><span>Railway behind Cloudflare</span></div><div><b>Status</b><span>Live since September 2026</span></div></div>
+    <div class="case-media rv"><div style="position:relative"><video data-loop muted loop playsinline preload="metadata" poster="../web-playmatrix.jpg"><source src="../web-playmatrix-scroll.mp4" type="video/mp4"></video></div></div>
+  </div>
+</section>
+<section class="wrap case-body rv"><h2>The problem</h2><div class="text"><p>All 34 images on the old site returned errors, because uploads had been saved to the server's own disk and were wiped on every redeploy. The site sent zero security headers, its media catalogue could be listed by anyone, and only the previous developer held the accounts.</p></div></section>
+<section class="wrap case-body rv"><h2>What I built</h2><div class="text"><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg><span>A new public site and an admin panel, from one codebase, so the team edits their own work</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg><span>Media on Cloudflare R2, so images can never be lost on a redeploy again</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg><span>Security headers, locked private fields and SVG uploads blocked</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg><span>Enquiry emails delivered straight to the studio inbox</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg><span>Nightly automatic database backups</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg><span>Automated checks for colour contrast in both themes, 200% text zoom on every page, and phone layouts</span></li></ul></div></section>
+<section class="wrap case-body rv"><h2>Results</h2><div class="text"><div class="results"><div><b>94 to 99</b><span>Google PageSpeed score on phone</span></div><div><b>100</b><span>PageSpeed score on desktop</span></div><div><b>100</b><span>Lighthouse accessibility and SEO</span></div></div><p>The team can now publish new work themselves, and every enquiry arrives by email.</p></div></section>
+<section class="wrap case-body rv"><h2>What I learned</h2><div class="text"><p>Speed is a hundred small decisions, from trimming fonts to caching images properly, and the only way to keep it is to measure on every change. The same tools Google uses are the ones I run before anything goes live.</p></div></section>
+<div class="wrap"><a class="next" href="new-target.html"><div><span>Next project</span><h3>New Target</h3></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</main>
+<footer>
+  <div class="wrap">
+    <span>© 2026 Detrear Yaeger, Jaipur, India.</span>
+    <span><a href="mailto:detrearyaeger@gmail.com" style="color:var(--text)" data-umami-event="email-click">detrearyaeger@gmail.com</a></span>
+  </div>
+</footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>

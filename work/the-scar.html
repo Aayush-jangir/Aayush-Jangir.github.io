@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Scar | Detrear Yaeger</title>
+<meta name="description" content="A sixteen player, four team arena island for Fortnite, built solo in UEFN and Verse and published in August 2026.">
+<meta name="theme-color" content="#09090b">
+<link rel="canonical" href="https://aayush-jangir.github.io/work/the-scar.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aayush-jangir.github.io/work/the-scar.html">
+<meta property="og:title" content="The Scar | Detrear Yaeger">
+<meta property="og:description" content="A sixteen player, four team arena island for Fortnite, built solo in UEFN and Verse and published in August 2026.">
+<meta property="og:image" content="https://aayush-jangir.github.io/scar-poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23f4f4f5'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-weight='700' font-size='26' text-anchor='middle' fill='%2309090b'%3EDY%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a href="../" class="logo" aria-label="Detrear Yaeger, home"><i>DY</i>Detrear Yaeger</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="../#work">Work</a>
+      <a href="../#tools">Tools</a>
+      <a href="../#about">About</a>
+      <a href="../#contact" class="btn btn-accent btn-sm">Contact</a>
+    </nav>
+    <button class="menu" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+<main>
+<section class="case-hero">
+  <div class="wrap">
+    <a class="back" href="../#work"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>All work</a>
+    <div class="tags"><span class="tag live">Live on Fortnite</span><span class="tag">UEFN</span><span class="tag">Verse</span><span class="tag">Unreal Engine 5</span></div>
+    <h1>The Scar</h1>
+    <p class="lede">A sixteen player, four team arena island for Fortnite, built solo in UEFN and Verse for the Epic Games UEFN Student Bootcamp, and published in August 2026.</p>
+    <div class="hero-cta" style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn-accent" href="https://www.fortnite.com/@detreardev/4947-0294-9253" target="_blank" rel="noopener" data-umami-event="play-fortnite">Play on Fortnite</a></div>
+    <div class="meta"><div><b>Role</b><span>Solo: design, Verse code, level and HUD</span></div><div><b>Platform</b><span>Fortnite, built in UEFN</span></div><div><b>Island code</b><span>4947-0294-9253</span></div><div><b>Status</b><span>Live since August 2026</span></div></div>
+    <div class="case-media rv"><video data-loop muted loop playsinline preload="metadata" poster="../scar-poster.jpg" controls><source src="../scar-loop.mp4" type="video/mp4"></video></div>
+  </div>
+</section>
+<section class="wrap case-body rv"><h2>The idea</h2><div class="text"><p>The bootcamp asked for a complete island that could pass Epic's review and go live. I wanted a team mode where every match leaves a visible history, so you can read the fight just by looking at the arena.</p><p>Every elimination permanently plants a banner in the killer's team colour. The player with the most eliminations becomes the <strong>Juggernaut</strong>, and from then on the title only moves by taking it from whoever holds it. Hold it long enough and a trophy chamber opens that only the Juggernaut can enter.</p></div></section>
+<section class="wrap case-body rv"><h2>What I built</h2><div class="text"><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg><span>Seven Verse manager modules, each owning one part of the game, written and debugged solo</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg><span>A pre-allocated pool of 100 banner props that are recycled rather than spawned, so a busy match stays smooth</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg><span>Title transfer that only happens on an elimination of the current holder, with clear on-screen prompts</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg><span>A HUD rebuilt after playtests, so players always know who holds the title and how long until the chamber opens</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg><span>Everything needed to publish: Epic content review and an IARC age rating</span></li></ul></div></section>
+<section class="wrap case-body rv"><h2>Results</h2><div class="text"><div class="results"><div><b>16</b><span>players per match, four teams</span></div><div><b>0.29%</b><span>missed frames in Epic production telemetry</span></div><div><b>0</b><span>Verse runtime errors</span></div></div><p>The island passed Epic's content review and age rating and is live on Fortnite today.</p></div></section>
+<section class="wrap case-body rv"><h2>What I learned</h2><div class="text"><p>Performance in UEFN is a design decision, not a fix at the end. Pooling the banners from the start is what kept the missed frame rate under a third of a percent with sixteen players. And a HUD is only right once real players have tried to read it in the middle of a fight.</p></div></section>
+<div class="wrap"><a class="next" href="mirror-reflection.html"><div><span>Next project</span><h3>Mirror Reflection</h3></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</main>
+<footer>
+  <div class="wrap">
+    <span>© 2026 Detrear Yaeger, Jaipur, India.</span>
+    <span><a href="mailto:detrearyaeger@gmail.com" style="color:var(--text)" data-umami-event="email-click">detrearyaeger@gmail.com</a></span>
+  </div>
+</footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>
