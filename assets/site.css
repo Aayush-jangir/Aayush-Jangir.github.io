@@ -1,4 +1,6 @@
 /* Detrear Yaeger portfolio. One family (Geist), one accent, footage carries the colour. */
+@font-face{font-family:'Geist';font-style:normal;font-weight:400 600;font-display:swap;src:url(fonts/geist-latin.woff2) format('woff2')}
+@font-face{font-family:'Geist Mono';font-style:normal;font-weight:400 500;font-display:swap;src:url(fonts/geist-mono-latin.woff2) format('woff2')}
 :root{
   --bg:#09090b;--bg-2:#0e0e11;--panel:#121216;--panel-2:#17171c;
   --line:rgba(255,255,255,.08);--line-2:rgba(255,255,255,.15);
